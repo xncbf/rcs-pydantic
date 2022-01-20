@@ -2,6 +2,6 @@
 
 set -x
 
-black rcs_pydantic --check
-isort --check-only rcs_pydantic
-flake8
+poetry run black rcs_pydantic --check
+poetry run isort --check-only rcs_pydantic
+poetry run flake8
