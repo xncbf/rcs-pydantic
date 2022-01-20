@@ -3,26 +3,26 @@ from typing import Optional
 
 from scheme import rcs as rcs_scheme
 
-STANDALONE_1 = "SCS00000"  # 기본 말풍선
-STANDALONE_2 = "SCL00000"  # 텍스트 카드
-CAROUSEL_MEDIUM_1 = "CCwMhM0200"  # 슬라이드형(Medium, 2장)
-CAROUSEL_MEDIUM_2 = "CCwMhM0300"  # 슬라이드형(Medium, 3장)
-CAROUSEL_MEDIUM_3 = "CCwMhM0400"  # 슬라이드형(Medium, 4장)
-CAROUSEL_MEDIUM_4 = "CCwMhM0500"  # 슬라이드형(Medium, 5장)
-CAROUSEL_MEDIUM_5 = "CCwMhM0600"  # 슬라이드형(Medium, 6장)
-CAROUSEL_SMALL_1 = "CCwShS0200"  # 슬라이드형(Small, 2장)
-CAROUSEL_SMALL_2 = "CCwShS0300"  # 슬라이드형(Small, 3장)
-CAROUSEL_SMALL_3 = "CCwShS0400"  # 슬라이드형(Small, 4장)
-CAROUSEL_SMALL_4 = "CCwShS0500"  # 슬라이드형(Small, 5장)
-CAROUSEL_SMALL_5 = "CCwShS0600"  # 슬라이드형(Small, 6장)
-STANDALONE_MEDIA_TOP = "SCwThT00"  # 세로형(Tall)
-STANDALONE_MEDIA_TOP = "SCwThM00"  # 세로형(Medium)
-
 
 class RcsMessage:
+    STANDALONE_1 = "SCS00000"  # 기본 말풍선
+    STANDALONE_2 = "SCL00000"  # 텍스트 카드
+    CAROUSEL_MEDIUM_1 = "CCwMhM0200"  # 슬라이드형(Medium, 2장)
+    CAROUSEL_MEDIUM_2 = "CCwMhM0300"  # 슬라이드형(Medium, 3장)
+    CAROUSEL_MEDIUM_3 = "CCwMhM0400"  # 슬라이드형(Medium, 4장)
+    CAROUSEL_MEDIUM_4 = "CCwMhM0500"  # 슬라이드형(Medium, 5장)
+    CAROUSEL_MEDIUM_5 = "CCwMhM0600"  # 슬라이드형(Medium, 6장)
+    CAROUSEL_SMALL_1 = "CCwShS0200"  # 슬라이드형(Small, 2장)
+    CAROUSEL_SMALL_2 = "CCwShS0300"  # 슬라이드형(Small, 3장)
+    CAROUSEL_SMALL_3 = "CCwShS0400"  # 슬라이드형(Small, 4장)
+    CAROUSEL_SMALL_4 = "CCwShS0500"  # 슬라이드형(Small, 5장)
+    CAROUSEL_SMALL_5 = "CCwShS0600"  # 슬라이드형(Small, 6장)
+    STANDALONE_MEDIA_TOP = "SCwThT00"  # 세로형(Tall)
+    STANDALONE_MEDIA_TOP = "SCwThM00"  # 세로형(Medium)
+
     def __init__(
         self,
-        message_info: rcs_scheme.MoMsgInfo,
+        message_info: rcs_scheme.MoMessageInfo,
         agency_id: str = "ktbizrcs",
         message_base_id: str = STANDALONE_1,
         service_type: str = "RCSSMS",
@@ -55,15 +55,15 @@ class RcsMessage:
             common=self.make_common_info(message_info), rcs=self.make_rcs_info(message_info)
         )
 
-    def make_common_info(self, message_info: rcs_scheme.MoMsgInfo) -> rcs_scheme.CommonInfo:
+    def make_common_info(self, message_info: rcs_scheme.MoMessageInfo) -> rcs_scheme.CommonInfo:
         return rcs_scheme.CommonInfo(
             msgId=message_info.replyId,
             userContact=message_info.userContact,
             scheduleType=0,
-            msgServiceType=rcs_scheme.MsgServiceTypeEnum.RCS,
+            msgServiceType=rcs_scheme.MessageServiceTypeEnum.RCS,
         )
 
-    def make_rcs_info(self, message_info: rcs_scheme.MoMsgInfo) -> rcs_scheme.RcsInfo:
+    def make_rcs_info(self, message_info: rcs_scheme.MoMessageInfo) -> rcs_scheme.RcsInfo:
         rcs_info = rcs_scheme.RcsInfo(
             chatbotId=message_info.chatbotId,
             agencyId=self.agency_id,
