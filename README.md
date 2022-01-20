@@ -1,12 +1,42 @@
-# rcs-pydantic
+<p align="center">
+    <em>한국 통신사 rcs 를 위한 pydantic 구조체</em>
+</p>
+<p align="center">
+<a href="https://github.com/xncbf/rcs-pydantic/actions?query=workflow%3ATests+event%3Apush+branch%3Amain" target="_blank">
+    <img src="https://github.com/xncbf/rcs-pydantic/workflows/Tests/badge.svg?event=push&branch=main" alt="Test">
+</a>
+<a href="https://codecov.io/gh/xncbf/rcs-pydantic" target="_blank">
+    <img src="https://img.shields.io/codecov/c/github/xncbf/rcs-pydantic?color=%2334D058" alt="Coverage">
+</a>
+<a href="https://pypi.org/project/rcs-pydantic" target="_blank">
+    <img src="https://img.shields.io/pypi/v/rcs-pydantic?color=%2334D058&label=pypi%20package" alt="Package version">
+</a>
+<a href="https://pypi.org/project/rcs-pydantic" target="_blank">
+    <img src="https://img.shields.io/pypi/pyversions/rcs-pydantic.svg?color=%2334D058" alt="Supported Python versions">
+</a>
+</p>
 
-이 프로젝트는 국내 통신사 `rcs` 규격에 대한 `pydantic` sheme 과 기능을 제공하는 프로젝트입니다.
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+- [Contribution](#contribution)
 
-한국 한정 프로젝트이기 때문에 모든 문서 및 이슈, PR 등은 한국어로 작성됩니다.
-
-## 설치
+## Installation
 
 ```sh
 pip install rcs-pydantic
 ```
 
+## Usage
+
+```py
+TODO
+```
+
+## Features
+
+TODO
+
+## Contribution
+
+TODO
