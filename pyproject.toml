@@ -42,12 +42,7 @@ sections= ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
 
 # https://docs.pytest.org/en/6.2.x/reference.html
 [tool.pytest.ini_options]
-minversion = "6.2"
-env_files = [
-    ".env",
-    ".test.env",
-    ".deploy.env",
-]
+minversion = "6.2.5"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

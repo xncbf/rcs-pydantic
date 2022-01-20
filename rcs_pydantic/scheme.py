@@ -1,8 +1,9 @@
 from enum import Enum, IntEnum
 from typing import Optional, Union
 
-from errors import ErrorCodeEnum, LegacyErrorCodeEnum
 from pydantic import BaseModel, Field, validator
+
+from .errors import ErrorCodeEnum, LegacyErrorCodeEnum
 
 
 class MessageServiceTypeEnum(str, Enum):

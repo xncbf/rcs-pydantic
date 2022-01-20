@@ -1,5 +1,4 @@
-from ctypes import Union
-from typing import Optional
+from typing import Optional, Union
 
 from . import scheme as rcs_scheme
 
