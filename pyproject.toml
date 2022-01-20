@@ -11,10 +11,43 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.7"
+pydantic = "^1.9.0"
 
 [tool.poetry.dev-dependencies]
 pytest-cov = "^3.0.0"
 pytest = "^6.2.5"
+black = "21.11b1"
+flake8 = "^4.0.1"
+mypy = "^0.931"
+isort = "^5.10.1"
+
+[tool.black]
+line-length = 120
+target-version = ['py37', 'py38', 'py39', 'py310']
+include = '\.pyi?$'
+extend-exclude = '''
+# A regex preceded with ^/ will apply only to files and directories
+# in the root of the project.
+^/foo.py  # exclude a file named foo.py in the root of the project (in addition to the defaults)
+'''
+
+[tool.mypy]
+python_version = '3.10'
+ignore_missing_imports = 'True'
+
+[tool.isort]
+profile = "black"
+line_length = 120
+sections= ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+
+# https://docs.pytest.org/en/6.2.x/reference.html
+[tool.pytest.ini_options]
+minversion = "6.2"
+env_files = [
+    ".env",
+    ".test.env",
+    ".deploy.env",
+]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
