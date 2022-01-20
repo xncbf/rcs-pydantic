@@ -421,7 +421,7 @@ class EventTypeEnum(str, Enum):
     NEW_USER: str = "newuser"
 
 
-class MoMessageInfo(BaseModel):
+class MessageInfo(BaseModel):
     replyId: str = Field(max_length=40)
     eventType: EventTypeEnum
     """

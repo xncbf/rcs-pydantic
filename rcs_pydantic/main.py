@@ -22,7 +22,7 @@ class RcsMessage:
 
     def __init__(
         self,
-        message_info: rcs_scheme.MoMessageInfo,
+        message_info: rcs_scheme.MessageInfo,
         agency_id: str = "ktbizrcs",
         message_base_id: str = STANDALONE_1,
         service_type: str = "RCSSMS",
@@ -55,7 +55,7 @@ class RcsMessage:
             common=self.make_common_info(message_info), rcs=self.make_rcs_info(message_info)
         )
 
-    def make_common_info(self, message_info: rcs_scheme.MoMessageInfo) -> rcs_scheme.CommonInfo:
+    def make_common_info(self, message_info: rcs_scheme.MessageInfo) -> rcs_scheme.CommonInfo:
         return rcs_scheme.CommonInfo(
             msgId=message_info.replyId,
             userContact=message_info.userContact,
@@ -63,7 +63,7 @@ class RcsMessage:
             msgServiceType=rcs_scheme.MessageServiceTypeEnum.RCS,
         )
 
-    def make_rcs_info(self, message_info: rcs_scheme.MoMessageInfo) -> rcs_scheme.RcsInfo:
+    def make_rcs_info(self, message_info: rcs_scheme.MessageInfo) -> rcs_scheme.RcsInfo:
         rcs_info = rcs_scheme.RcsInfo(
             chatbotId=message_info.chatbotId,
             agencyId=self.agency_id,

@@ -51,7 +51,7 @@ __all__ = [
     "ResponseErrorInfo",
     "ResponseInfo",
     "EventTypeEnum",
-    "MoMessageInfo",
+    "MessageInfo",
     "SendInfo",
     "TokenInfo",
 ]
