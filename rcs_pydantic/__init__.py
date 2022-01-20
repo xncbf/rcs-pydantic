@@ -3,10 +3,9 @@ from .enums import *
 from .errors import *
 from .main import *
 from .scheme import *
-from .version import *
+from .version import VERSION
 
 __all__ = [
-    "VERSION",
     "RcsMessage",
     "LegacyErrorCodeEnum",
     "ErrorCodeEnum",
