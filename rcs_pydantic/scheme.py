@@ -1,4 +1,4 @@
-from typing import Optional, Union
+from typing import List, Optional, Union
 
 from pydantic import BaseModel, Field, validator
 
@@ -139,7 +139,7 @@ class SuggestionInfo(BaseModel):
 
 
 class ButtonInfo(BaseModel):
-    suggestions: list[SuggestionInfo]
+    suggestions: List[SuggestionInfo]
 
 
 class CommonInfo(BaseModel):
@@ -239,7 +239,7 @@ class RcsInfo(BaseModel):
       - "media" :"maapfile://{fileId}"
     """
 
-    buttons: Optional[list[ButtonInfo]]
+    buttons: Optional[List[ButtonInfo]]
     """
     # buttons
     GSMA RCC.07의3.6.10.4의 ‘suggestions’ 규격에 준하여 버튼을 구성
@@ -253,7 +253,7 @@ class RcsInfo(BaseModel):
     버튼의 변수부를 등록 하여 사용하며, 해당 필드 허용하지 않음.
     """
 
-    chipLists: Optional[list]
+    chipLists: Optional[List]
     """
     # chipLists
     GSMA RCC.07의3.6.10.4의 ‘suggestion’ 규격에 따라 chiplist를 구성(RCC.07의 기준 버전 확인 필요)
