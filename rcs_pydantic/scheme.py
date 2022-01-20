@@ -1,57 +1,9 @@
-from enum import Enum, IntEnum
 from typing import Optional, Union
 
 from pydantic import BaseModel, Field, validator
 
+from . import enums
 from .errors import ErrorCodeEnum, LegacyErrorCodeEnum
-
-
-class MessageServiceTypeEnum(str, Enum):
-    RCS: str = "rcs"
-    LEGACY: str = "rcs, legacy"  # rcs 부달시, xMS로fallback전송
-
-
-class ServiceTypeEnum(str, Enum):
-    SMS: str = "RCSSMS"
-    LMS: str = "RCSLMS"
-    MMS: str = "RCSMMS"
-    TMPL: str = "RCSTMPL"
-    CHAT: str = "RCSCHAT"
-
-
-class LegacyServiceTypeEnum(str, Enum):
-    SMS: str = "SMS"
-    LMS: str = "LMS"
-
-
-class ScheduleTypeEnum(IntEnum):
-    IMMEDIATE: int = 0
-
-
-class ExpiryOptionEnum(IntEnum):
-    AFTER_THREE_DAYS: int = 1
-    AFTER_SETTING_TIMES: int = 2
-
-
-class HeaderEnum(str, Enum):
-    """
-    헤더 광고에 대한 정의
-    0: 광고 넣지않음
-    1: 광고 넣음
-    """
-
-    NOT_ADVERTISE: int = 0
-    ADVERTISE: int = 1
-
-
-class ActionEnum(str, Enum):
-    URL_ACTION: str = "urlAction"  # 단말기에 기본 웹 브라우저로 설정된 앱을 통해서, 웹페이지로 이동할 수있습니다
-    LOCAL_BROWSER_ACTION: str = "localBrowserAction"  # 단말기의 메시지 앱 내부 브라우저를 통해 웹페이지로 이동할 수 있습니다
-    MAP_ACTION: str = "mapAction"  # 미리 지정된 위치를 보여주거나 사용자의 현재 위치를 서버로 전송 할 수 있습니다.
-    CALENDAR_ACTION: str = "calendarAction"  # 사용자의 캘린더에 특정 일정을 등록 할 수 있습니다.
-    CLIPBOARD_ACTION: str = "clipboardAction"  # 특정 문구를 사용자 단말이 자동으로 복사 할 수 있게 합니다
-    COMPOSE_ACTION: str = "composeAction"  # 다른 번호로 메시지를 보낼 수 있도록 대화방을 엽니다.
-    DIALER_ACTION: str = "dialerAction"  # 특정 전화번호로 전화를 걸 수 있습니다.
 
 
 class RcsSMSBody(BaseModel):
@@ -200,9 +152,9 @@ class CommonInfo(BaseModel):
 
     msgId: str = Field(max_length=40)
     userContact: str = Field(max_length=40)
-    scheduleType: Optional[ScheduleTypeEnum]
+    scheduleType: Optional[enums.ScheduleTypeEnum]
     msgGroupId: Optional[str] = Field(max_length=20)
-    msgServiceType: MessageServiceTypeEnum
+    msgServiceType: enums.MessageServiceTypeEnum
 
 
 class RcsInfo(BaseModel):
@@ -217,8 +169,8 @@ class RcsInfo(BaseModel):
     Agency ID가 "ktbizrcs" 가 아닌 경우 필수 입력 필요.
     """
     messagebaseId: str = Field(max_length=40)
-    serviceType: ServiceTypeEnum
-    expiryOption: Optional[ExpiryOptionEnum]
+    serviceType: enums.ServiceTypeEnum
+    expiryOption: Optional[enums.ExpiryOptionEnum]
     """
     # expiryOption
     메시지 처리 옵션 enum: [1, 2]
@@ -229,7 +181,7 @@ class RcsInfo(BaseModel):
 
     * 양방향 메시지 발송 시에는2로 설정해서 발송해야 한다
     """
-    header: HeaderEnum
+    header: enums.HeaderEnum
     footer: Optional[str] = Field(max_length=20, regex=r"^[\d-]*$")
     """
     # footer
@@ -240,9 +192,9 @@ class RcsInfo(BaseModel):
 
     @validator("footer")
     def footer_validator(cls, v, values, **kwargs):
-        if values["header"] == HeaderEnum.NOT_ADVERTISE.value and v:
+        if values["header"] == enums.HeaderEnum.NOT_ADVERTISE.value and v:
             raise ValueError("If header is 0 then footer can not be provided.")
-        elif values["header"] == HeaderEnum.ADVERTISE.value and not v:
+        elif values["header"] == enums.HeaderEnum.ADVERTISE.value and not v:
             raise ValueError("If header is 1 then footer should be provided.")
         return v
 
@@ -325,7 +277,7 @@ class LegacyInfo(BaseModel):
     legacy만 보낼 수는 없으며, RcsInfo 영역이 반드시 존재 해야 함)
     """
 
-    serviceType: LegacyServiceTypeEnum
+    serviceType: enums.LegacyServiceTypeEnum
     """
     Fallback은SMS/LMS에 대해서만 제공하고, MMS,CHAT에 대해서는 제공하지 않는다
     """
@@ -359,22 +311,6 @@ class LegacyInfo(BaseModel):
     """
 
 
-class MessageStatusEnum(str, Enum):
-    SUCCESS: str = "success"
-    FAIL: str = "fail"
-
-
-class MnoInfoEnum(str, Enum):
-    KT: str = "KT"
-    SKT: str = "SKT"
-    LGU: str = "LGU"
-
-
-class BillEnum(IntEnum):
-    FREE: int = 0
-    CHARGE: int = 1
-
-
 class StatusInfo(BaseModel):
     """
     메시지 전송 결과
@@ -383,9 +319,9 @@ class StatusInfo(BaseModel):
     rcsId: Optional[str] = Field(max_length=20)
     msgId: str = Field(max_length=40)
     userContact: Optional[str] = Field(max_length=40)
-    status: MessageStatusEnum
-    serviceType: Optional[ServiceTypeEnum]
-    mnoInfo: Optional[MnoInfoEnum]
+    status: enums.MessageStatusEnum
+    serviceType: Optional[enums.ServiceTypeEnum]
+    mnoInfo: Optional[enums.MnoInfoEnum]
     sentTime: Optional[str] = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$")
     error: Optional[ErrorCodeEnum]
     legacyError: Optional[LegacyErrorCodeEnum]
@@ -393,7 +329,7 @@ class StatusInfo(BaseModel):
     autoReplyMsgId: Optional[str] = Field(max_length=40)
     postBackId: Optional[str] = Field(max_length=40)
     chatbotId: Optional[str] = Field(max_length=40)
-    bill: Optional[BillEnum]
+    bill: Optional[enums.BillEnum]
 
 
 class QuerystatusInfo(BaseModel):
@@ -416,15 +352,9 @@ class ResponseInfo(BaseModel):
     data: dict
 
 
-class EventTypeEnum(str, Enum):
-    MESSAGE: str = "message"
-    RESPONSE: str = "response"
-    NEW_USER: str = "newuser"
-
-
 class MessageInfo(BaseModel):
     replyId: str = Field(max_length=40)
-    eventType: EventTypeEnum
+    eventType: enums.EventTypeEnum
     """
     양방향 MO메시지의 종류를 식별하기 위한 값으로, 총3개의 eventType이 사용된다. 각 eventType별로
     postbackId, PostbackData, displayText, messagebody 등의 설정여부가 달라진다
@@ -472,7 +402,7 @@ class MessageInfo(BaseModel):
     @validator("messageBody")
     def check_message_body(cls, v, values, **kwargs):
         if v:
-            if values["eventType"] == EventTypeEnum.MESSAGE:
+            if values["eventType"] == enums.EventTypeEnum.MESSAGE:
                 return v
             raise ValueError("messageBody is not allowed")
 

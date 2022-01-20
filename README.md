@@ -17,7 +17,7 @@
 </p>
 
 - [Installation](#installation)
-- [Usage](#usage)
+- [Quick start](#quick-start)
 - [Features](#features)
 - [Contribution](#contribution)
 
@@ -27,7 +27,7 @@
 pip install rcs-pydantic
 ```
 
-## Usage
+## Quick start
 
 ```py
 import httpx

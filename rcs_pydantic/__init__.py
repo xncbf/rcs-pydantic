@@ -1,4 +1,5 @@
 # flake8: noqa
+from .enums import *
 from .errors import *
 from .main import *
 from .scheme import *
