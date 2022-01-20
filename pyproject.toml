@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "rcs-pydantic"
-version = "0.1.3"
+version = "0.1.4"
 description = ""
 authors = ["xncbf <xncbf12@gmail.com>"]
 keywords = ["pydantic", "rcs", "fastapi"]

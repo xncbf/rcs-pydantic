@@ -1,7 +1,7 @@
 from ctypes import Union
 from typing import Optional
 
-from scheme import rcs as rcs_scheme
+from . import scheme as rcs_scheme
 
 
 class RcsMessage:
