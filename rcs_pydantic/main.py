@@ -1,5 +1,7 @@
 from typing import Optional, Union
 
+from rcs_pydantic import enums
+
 from . import scheme
 
 
@@ -59,7 +61,7 @@ class RcsMessage:
             msgId=message_info.replyId,
             userContact=message_info.userContact,
             scheduleType=0,
-            msgServiceType=scheme.MessageServiceTypeEnum.RCS,
+            msgServiceType=enums.MessageServiceTypeEnum.RCS,
         )
 
     def make_rcs_info(self, message_info: scheme.MessageInfo) -> scheme.RcsInfo:
@@ -78,6 +80,7 @@ class RcsMessage:
 
         if self.buttons:
             rcs_info.buttons = self.buttons
+        return rcs_info
 
     def send(self):
         self.send_info

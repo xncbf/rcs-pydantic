@@ -185,6 +185,7 @@ class RcsInfo(BaseModel):
     * 양방향 메시지 발송 시에는2로 설정해서 발송해야 한다
     """
     header: enums.HeaderEnum
+
     footer: Optional[str] = Field(max_length=20, regex=r"^[\d-]*$")
     """
     # footer
@@ -195,9 +196,9 @@ class RcsInfo(BaseModel):
 
     @validator("footer")
     def footer_validator(cls, v, values, **kwargs):
-        if values["header"] == enums.HeaderEnum.NOT_ADVERTISE.value and v:
+        if values["header"] == enums.HeaderEnum.NOT_ADVERTISE and v:
             raise ValueError("If header is 0 then footer can not be provided.")
-        elif values["header"] == enums.HeaderEnum.ADVERTISE.value and not v:
+        elif values["header"] == enums.HeaderEnum.ADVERTISE and not v:
             raise ValueError("If header is 1 then footer should be provided.")
         return v
 

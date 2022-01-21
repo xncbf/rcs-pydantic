@@ -1,4 +1,7 @@
+import pytest
 from faker import Faker
+
+from rcs_pydantic import enums
 
 from . import factory
 
@@ -102,7 +105,12 @@ def test_common_info_factory():
 
 
 def test_rcs_info_factory():
-    factory.RcsInfoFactory()
+    with pytest.raises(ValueError):
+        factory.RcsInfoFactory(header=enums.HeaderEnum.NOT_ADVERTISE, footer="080-000-0000")
+    with pytest.raises(ValueError):
+        factory.RcsInfoFactory(header=enums.HeaderEnum.ADVERTISE, footer=None)
+
+    factory.RcsInfoFactory(header=enums.HeaderEnum.ADVERTISE, footer="080-000-0000")
 
 
 def test_legacy_info_factory():
@@ -130,7 +138,11 @@ def test_response_info_factory():
 
 
 def test_message_info_factory():
-    factory.MessageInfoFactory()
+    with pytest.raises(ValueError):
+        factory.MessageInfoFactory(eventType=enums.EventTypeEnum.RESPONSE, messageBody=fake.sentence(nb_words=10)[:40])
+
+    factory.MessageInfoFactory(eventType=enums.EventTypeEnum.MESSAGE, messageBody=fake.sentence(nb_words=10)[:40])
+    factory.MessageInfoFactory(eventType=enums.EventTypeEnum.MESSAGE, messageBody=None)
 
 
 def test_send_info_factory():

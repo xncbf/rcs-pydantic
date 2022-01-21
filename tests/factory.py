@@ -204,7 +204,7 @@ class RcsInfoFactory(factory.Factory):
     messagebaseId: str = factory.LazyAttribute(lambda n: fake.sentence(nb_words=10)[:40])
     serviceType: str = factory.LazyAttribute(lambda n: fake.random_element(elements=enums.ServiceTypeEnum))
     expiryOption: int = 2
-    header: str = "0"
+    header: str = factory.LazyAttribute(lambda n: fake.random_element(elements=enums.HeaderEnum))
     body: scheme.RcsSMSBody = factory.SubFactory(RcsSMSBodyFactory)
 
 
