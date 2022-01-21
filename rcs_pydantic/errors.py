@@ -143,7 +143,7 @@ class ErrorCodeEnum(str, Enum):
     TOO_MANY_REQUEST = 42601
 
 
-class RCSErrorCode(Exception):
+class RcsException(Exception):
     """
     Base class for all RCSErrorCode exceptions.
     """

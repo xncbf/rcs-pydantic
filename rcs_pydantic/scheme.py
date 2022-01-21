@@ -36,7 +36,10 @@ class RcsTMPLBody(BaseModel):
 
 
 class LocationInfo(BaseModel):
-    query: str
+    query: Optional[str]
+    longitude: Optional[float]
+    latitude: Optional[float]
+    label: Optional[str]
 
 
 class ShowLocationInfo(BaseModel):

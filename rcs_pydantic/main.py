@@ -1,6 +1,6 @@
 from typing import Optional, Union
 
-from . import scheme as rcs_scheme
+from . import scheme
 
 
 class RcsMessage:
@@ -21,7 +21,7 @@ class RcsMessage:
 
     def __init__(
         self,
-        message_info: rcs_scheme.MessageInfo,
+        message_info: scheme.MessageInfo,
         agency_id: str = "ktbizrcs",
         message_base_id: str = STANDALONE_1,
         service_type: str = "RCSSMS",
@@ -31,11 +31,11 @@ class RcsMessage:
         cdr_id: str = "ktrcs02",
         copy_allowed: bool = True,
         body: Union[
-            rcs_scheme.RcsSMSBody,
-            rcs_scheme.RcsLMSBody,
-            rcs_scheme.RcsMMSBody,
-            rcs_scheme.RcsCHATBody,
-            rcs_scheme.RcsTMPLBody,
+            scheme.RcsSMSBody,
+            scheme.RcsLMSBody,
+            scheme.RcsMMSBody,
+            scheme.RcsCHATBody,
+            scheme.RcsTMPLBody,
         ] = ...,
         buttons: Optional[list] = None,
     ):
@@ -50,20 +50,20 @@ class RcsMessage:
         self.copy_allowed = copy_allowed
         self.body = body
         self.buttons = buttons
-        self.send_info = rcs_scheme.SendInfo(
+        self.send_info = scheme.SendInfo(
             common=self.make_common_info(message_info), rcs=self.make_rcs_info(message_info)
         )
 
-    def make_common_info(self, message_info: rcs_scheme.MessageInfo) -> rcs_scheme.CommonInfo:
-        return rcs_scheme.CommonInfo(
+    def make_common_info(self, message_info: scheme.MessageInfo) -> scheme.CommonInfo:
+        return scheme.CommonInfo(
             msgId=message_info.replyId,
             userContact=message_info.userContact,
             scheduleType=0,
-            msgServiceType=rcs_scheme.MessageServiceTypeEnum.RCS,
+            msgServiceType=scheme.MessageServiceTypeEnum.RCS,
         )
 
-    def make_rcs_info(self, message_info: rcs_scheme.MessageInfo) -> rcs_scheme.RcsInfo:
-        rcs_info = rcs_scheme.RcsInfo(
+    def make_rcs_info(self, message_info: scheme.MessageInfo) -> scheme.RcsInfo:
+        rcs_info = scheme.RcsInfo(
             chatbotId=message_info.chatbotId,
             agencyId=self.agency_id,
             messagebaseId=self.message_base_id,
