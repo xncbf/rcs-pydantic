@@ -1,4 +1,4 @@
-from typing import Optional, Union
+from typing import List, Optional, Union
 
 from pydantic import BaseModel, Field, validator
 
@@ -36,7 +36,10 @@ class RcsTMPLBody(BaseModel):
 
 
 class LocationInfo(BaseModel):
-    query: str
+    query: Optional[str]
+    longitude: Optional[float]
+    latitude: Optional[float]
+    label: Optional[str]
 
 
 class ShowLocationInfo(BaseModel):
@@ -139,7 +142,7 @@ class SuggestionInfo(BaseModel):
 
 
 class ButtonInfo(BaseModel):
-    suggestions: list[SuggestionInfo]
+    suggestions: List[SuggestionInfo]
 
 
 class CommonInfo(BaseModel):
@@ -182,6 +185,7 @@ class RcsInfo(BaseModel):
     * 양방향 메시지 발송 시에는2로 설정해서 발송해야 한다
     """
     header: enums.HeaderEnum
+
     footer: Optional[str] = Field(max_length=20, regex=r"^[\d-]*$")
     """
     # footer
@@ -192,9 +196,9 @@ class RcsInfo(BaseModel):
 
     @validator("footer")
     def footer_validator(cls, v, values, **kwargs):
-        if values["header"] == enums.HeaderEnum.NOT_ADVERTISE.value and v:
+        if values["header"] == enums.HeaderEnum.NOT_ADVERTISE and v:
             raise ValueError("If header is 0 then footer can not be provided.")
-        elif values["header"] == enums.HeaderEnum.ADVERTISE.value and not v:
+        elif values["header"] == enums.HeaderEnum.ADVERTISE and not v:
             raise ValueError("If header is 1 then footer should be provided.")
         return v
 
@@ -239,7 +243,7 @@ class RcsInfo(BaseModel):
       - "media" :"maapfile://{fileId}"
     """
 
-    buttons: Optional[list[ButtonInfo]]
+    buttons: Optional[List[ButtonInfo]]
     """
     # buttons
     GSMA RCC.07의3.6.10.4의 ‘suggestions’ 규격에 준하여 버튼을 구성
@@ -253,7 +257,7 @@ class RcsInfo(BaseModel):
     버튼의 변수부를 등록 하여 사용하며, 해당 필드 허용하지 않음.
     """
 
-    chipLists: Optional[list]
+    chipLists: Optional[List]
     """
     # chipLists
     GSMA RCC.07의3.6.10.4의 ‘suggestion’ 규격에 따라 chiplist를 구성(RCC.07의 기준 버전 확인 필요)
@@ -322,10 +326,10 @@ class StatusInfo(BaseModel):
     status: enums.MessageStatusEnum
     serviceType: Optional[enums.ServiceTypeEnum]
     mnoInfo: Optional[enums.MnoInfoEnum]
-    sentTime: Optional[str] = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$")
+    sentTime: Optional[str] = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}$")
     error: Optional[ErrorCodeEnum]
     legacyError: Optional[LegacyErrorCodeEnum]
-    timestamp: str = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$")
+    timestamp: str = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}$")
     autoReplyMsgId: Optional[str] = Field(max_length=40)
     postBackId: Optional[str] = Field(max_length=40)
     chatbotId: Optional[str] = Field(max_length=40)

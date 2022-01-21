@@ -35,8 +35,8 @@ class HeaderEnum(str, Enum):
     1: 광고 넣음
     """
 
-    NOT_ADVERTISE: int = 0
-    ADVERTISE: int = 1
+    NOT_ADVERTISE: str = "0"
+    ADVERTISE: str = "1"
 
 
 class ActionEnum(str, Enum):
