@@ -325,10 +325,10 @@ class StatusInfo(BaseModel):
     status: enums.MessageStatusEnum
     serviceType: Optional[enums.ServiceTypeEnum]
     mnoInfo: Optional[enums.MnoInfoEnum]
-    sentTime: Optional[str] = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$")
+    sentTime: Optional[str] = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}$")
     error: Optional[ErrorCodeEnum]
     legacyError: Optional[LegacyErrorCodeEnum]
-    timestamp: str = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$")
+    timestamp: str = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}$")
     autoReplyMsgId: Optional[str] = Field(max_length=40)
     postBackId: Optional[str] = Field(max_length=40)
     chatbotId: Optional[str] = Field(max_length=40)
