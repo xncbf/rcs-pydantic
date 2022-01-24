@@ -3,7 +3,6 @@ from .enums import *
 from .errors import *
 from .main import *
 from .scheme import *
-from .version import VERSION
 
 __all__ = [
     "RcsMessage",
@@ -56,5 +55,3 @@ __all__ = [
     "SendInfo",
     "TokenInfo",
 ]
-
-__version__ = VERSION
