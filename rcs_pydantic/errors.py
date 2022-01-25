@@ -5,7 +5,7 @@ class LegacyErrorCodeEnum(str, Enum):
     pass
 
 
-class ErrorCodeEnum(str, Enum):
+class ErrorCodeEnum(Enum):
     """
     Enum of error codes.
     """
