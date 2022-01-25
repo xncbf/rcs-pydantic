@@ -31,58 +31,35 @@ pip install rcs-pydantic
 
 ```py
 import httpx
-from fastapi import Body, FastAPI
-from rcs_pydantic import scheme
+from rcs_pydantic import MessageInfo, RcsMessage
 
-app = FastAPI()
+message_info = {
+    "replyId": "B01RDSFR.KcNNLk67ui.FDSAF432153214",
+    "eventType":"message",
+    "messageBody": "{\"textMessage\":\"안녕하세요?\"}",
+    "userContact":"01012341234",
+    "chatbotId":"0212351235",
+    "timestamp": "2020-03-03T04:43:55.867+09"
+}
+
+rcs = {
+    "message_base_id": "SCS00000",
+    "service_type": "RCSSMS",
+    "header": "0",
+    "cdr_id": "KT_freedsoft",
+    "body": {
+        "title": "타이틀",
+        "description": "일반 RCSSMS 테스트 메시지 입니다."
+    }
+}
 
 
-def get_card(message_info):
-    rcs_message = RcsMessage(
-        message_info,
-        agency_id="ktbizrcs",
-        message_base_id="STANDALONE_1",
-        service_type="RCSSMS",
-        expiry_option=2,
-        header="0",
-        footer="080-0000-0000",
-        cdr_id="ktrcs02",
-        copy_allowed=True,
-        body=scheme.RcsSMSBody(
-            description=textwrap.dedent(
-                """\
-                안녕하세요.
-                메세지입니다.
-                """
-            )
-        ),
-        buttons=[
-            scheme.ButtonInfo(
-                suggestions=[
-                    scheme.SuggestionInfo(
-                        action=scheme.ActionInfo(
-                            urlAction=scheme.UrlActionInfo(
-                                openUrl=scheme.OpenUrlInfo(url="https://www.kt.com")
-                            ),
-                            displayText="kt 홈페이지 들어가기",
-                            postback=scheme.PostbackInfo(data="postback_kt"),
-                        )
-                    )
-                ]
-            )
-        ],
-    )
-    return rcs_message
+rcs_message = RcsMessage(message_info=MessageInfo(**message_info), **rcs)
+```
 
-@app.post("/corp/{version}/momsg")
-async def recieve_message(version: str, message_info: scheme.MessageInfo = Body(...)):
-    """
-    메세지 받는 웹훅
-    """
-    body = get_card(message_info)
-    response = httpx.post(url=f"{config.RCS_URL}/message", json=body.json())
-    return {"status": response.status_code, "content": response.json()}
-
+```py
+print(rcs_message.send_info)
+common=CommonInfo(msgId='B01RDSFR.KcNNLk67ui.FDSAF432153214', userContact='01012341234', scheduleType=<ScheduleTypeEnum.IMMEDIATE: 0>, msgGroupId=None, msgServiceType=<MessageServiceTypeEnum.RCS: 'rcs'>) rcs=RcsInfo(chatbotId='0212351235', agencyId='ktbizrcs', messagebaseId='SCS00000', serviceType=<ServiceTypeEnum.SMS: 'RCSSMS'>, expiryOption=<ExpiryOptionEnum.AFTER_SETTING_TIMES: 2>, header=<HeaderEnum.NOT_ADVERTISE: '0'>, footer=None, cdrId='KT_freedsoft', copyAllowed=True, body=RcsSMSBody(title='타이틀', description='일반 RCSSMS 테스트 메시지 입니다.'), buttons=None, chipLists=None, replyId=None)
 ```
 
 ## Features

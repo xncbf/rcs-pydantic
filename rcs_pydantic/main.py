@@ -24,21 +24,21 @@ class RcsMessage:
     def __init__(
         self,
         message_info: scheme.MessageInfo,
-        agency_id: str = "ktbizrcs",
-        message_base_id: str = STANDALONE_1,
-        service_type: str = "RCSSMS",
-        expiry_option: int = 2,
-        header: str = "0",
-        footer: str = "080-0000-0000",
-        cdr_id: str = "ktrcs02",
-        copy_allowed: bool = True,
         body: Union[
             scheme.RcsSMSBody,
             scheme.RcsLMSBody,
             scheme.RcsMMSBody,
             scheme.RcsCHATBody,
             scheme.RcsTMPLBody,
-        ] = ...,
+        ],
+        agency_id: Optional[str] = None,
+        message_base_id: str = STANDALONE_1,
+        service_type: str = "RCSSMS",
+        expiry_option: Optional[int] = None,
+        header: str = "0",
+        footer: Optional[str] = None,
+        cdr_id: Optional[str] = None,
+        copy_allowed: Optional[bool] = None,
         buttons: Optional[list] = None,
     ):
         self.message_info = message_info
@@ -67,17 +67,21 @@ class RcsMessage:
     def make_rcs_info(self, message_info: scheme.MessageInfo) -> scheme.RcsInfo:
         rcs_info = scheme.RcsInfo(
             chatbotId=message_info.chatbotId,
-            agencyId=self.agency_id,
             messagebaseId=self.message_base_id,
             serviceType=self.service_type,
-            expiryOption=self.expiry_option,
             header=self.header,
-            footer=self.footer,
-            cdrId=self.cdr_id,
-            copyAllowed=self.copy_allowed,
             body=self.body,
         )
-
+        if self.agency_id:
+            rcs_info.agencyId = self.agency_id
+        if self.expiry_option:
+            rcs_info.expiryOption = self.expiry_option
+        if self.footer:
+            rcs_info.footer = self.footer
+        if self.cdr_id:
+            rcs_info.cdrId = self.cdr_id
+        if self.copy_allowed:
+            rcs_info.copyAllowed = self.copy_allowed
         if self.buttons:
             rcs_info.buttons = self.buttons
         return rcs_info

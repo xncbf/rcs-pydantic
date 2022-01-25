@@ -233,15 +233,15 @@ class StatusInfoFactory(factory.Factory):
     @factory.lazy_attribute
     def sentTime(self) -> str:
         t = datetime.now()
-        s = t.strftime("%Y-%m-%dT%H:%M:%S.%f")
-        s: str = s[:-3]
+        s: str = t.strftime("%Y-%m-%dT%H:%M:%S.%f")
+        s = s[:-3]
         return s + "+09"
 
     @factory.lazy_attribute
     def timestamp(self) -> str:
         t = datetime.now()
-        s = t.strftime("%Y-%m-%dT%H:%M:%S.%f")
-        s: str = s[:-3]
+        s: str = t.strftime("%Y-%m-%dT%H:%M:%S.%f")
+        s = s[:-3]
         return s + "+09"
 
 
@@ -249,7 +249,9 @@ class ErrorInfoFactory(factory.Factory):
     class Meta:
         model = scheme.ErrorInfo
 
-    code: str = factory.LazyAttribute(lambda n: fake.random_element(elements=errors.ErrorCodeEnum))
+    code: str = factory.LazyAttribute(
+        lambda n: fake.random_element(elements=[x.value[0] for x in errors.ErrorCodeEnum])
+    )
     message: str = factory.LazyAttribute(lambda n: fake.sentence(nb_words=20)[:50])
 
 
@@ -257,7 +259,7 @@ class ResponseErrorInfoFactory(factory.Factory):
     class Meta:
         model = scheme.ResponseErrorInfo
 
-    status: str = 403
+    status: str = "403"
     error: scheme.ErrorInfo = factory.SubFactory(ErrorInfoFactory)
 
 
@@ -274,7 +276,7 @@ class ResponseInfoFactory(factory.Factory):
     class Meta:
         model = scheme.ResponseInfo
 
-    status: str = 200
+    status: str = "200"
     data: dict = factory.SubFactory(TokenInfoFactory)
 
 
@@ -290,8 +292,8 @@ class MessageInfoFactory(factory.Factory):
     @factory.lazy_attribute
     def timestamp(self) -> str:
         t = datetime.now()
-        s = t.strftime("%Y-%m-%dT%H:%M:%S.%f")
-        s: str = s[:-3]
+        s: str = t.strftime("%Y-%m-%dT%H:%M:%S.%f")
+        s = s[:-3]
         return s + "+09"
 
 
