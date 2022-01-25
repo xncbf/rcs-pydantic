@@ -45,7 +45,7 @@ rcs = {
     "message_base_id": "SCS00000",
     "service_type": "RCSSMS",
     "header": "0",
-    "cdr_id": "KT_freedsoft",
+    "cdr_id": "KT_rcsid",
     "body": {
         "title": "타이틀",
         "description": "일반 RCSSMS 테스트 메시지 입니다."
@@ -73,7 +73,7 @@ rcs=RcsInfo(
     expiryOption=<ExpiryOptionEnum.AFTER_SETTING_TIMES: 2>,
     header=<HeaderEnum.NOT_ADVERTISE: '0'>,
     footer=None,
-    cdrId='KT_freedsoft',
+    cdrId='KT_rcsid',
     copyAllowed=True,
     body=RcsSMSBody(title='타이틀', description='일반 RCSSMS 테스트 메시지 입니다.'),
     buttons=None,
