@@ -236,7 +236,7 @@ class ErrorCodeEnum(TupleEnum):
     TOO_MANY_REQUEST = (42601, "Too Many Request")
 
 
-class MaaPErrorCodeEnum(Enum):
+class MaaPErrorCodeEnum(TupleEnum):
     """
     이동통신사 MaaP Core Enum of error codes.
     """
@@ -430,6 +430,50 @@ class MaaPErrorCodeEnum(Enum):
     WEBHOOK_SCHEDULER_PROCESSOR_EXECUTION_ERROR = (51955, "Webhook 스케줄러 프로세서 수행 오류.")
     WEBHOOK_SCHEDULER_PROCESSOR_EXECUTION_FAILUER = (51956, "Webhook 스케줄러 프로세서 수행 실패.")
     NON_EXISTING_MO_MESSAGE_ERROR = (51957, "Mo 메시지가 존재하지 않습니다.")
+
+
+class RcsBizCenterErrorCodeEnum(TupleEnum):
+    """
+    Rcs Biz Center Enum of error codes.
+    """
+
+    MISSING_AUTHORIZATION_HEADER = (61001, "Authorization 헤더 파라미터 누락")
+    MISSING_TOKEN = (61002, "Authorization 헤더 값(Token) 누락")
+    INVALID_TOKEN = (61003, "유효하지 않은 Token")
+    TOKEN_HAS_EXPIRED = (61004, "Token 만료")
+    INVALID_CLIENT_ID = (61005, "유효하지 않은 client id")
+    INVALID_SECRET_KEY = (61006, "유효하지 않은 secret key")
+    NO_BRAND_PERMISSION = (63001, "브랜드에 대한 권한 없음")
+    MISSING_X_RCS_BRANDKEY_HEADER = (64001, "X-RCS-BrandKey 헤더 누락")
+    INVALID_BRAND_KEY = (64002, "X-RCS-BrandKey 의 Brand Key 오류")
+    INVALID_BRANDID_ON_PATH_PARAMETER = (64101, "URL 내 Brand ID 오류")
+    INVALID_AGENCYID_ON_PATH_PARAMETER = (64102, "URL 내 Agency ID 오류")
+    INVALID_CORPREGNUM_ON_PATH_PARAMETER = (64103, "URL 내 사업자등록번호 오류")
+    INVALID_PERSONID_ON_PATH_PARAMETER = (64104, "URL 내 Person ID 오류")
+    INVALID_CHATBOTID_ON_PATH_PARAMETER = (64105, "URL 내 chatbot ID 오류")
+    INVALID_MESSAGEBASEID_ON_PATH_PARAMETER = (64106, "URL 내 messagebase ID 오류")
+    INVALID_MESSAGEBASEFORMID_ON_PATH_PARAMETER = (64107, "URL 내 messagebaseform ID 오류")
+    INVALID_QUERY_PARAMETER = (64201, "유효하지 않은 Query 파라미터 : (해당 파라미터)")
+    INVALID_QUERY_PARAMETER_VALUE = (64202, "Query 파라미터 값 오류 : (오류발생 값)")
+    QUERY_PARAMTER_REQUIRED = (64203, "필수 Query 파라미터 누락 : (누락된 파라미터)")
+    MISSING_BODY_DATA = (64301, "Body Data 누락")
+    INVALID_JSON_FORMAT = (64302, "Body Data JSON 형식 오류")
+    INVALID_TYPE_OF_ATTRIBUTE = (64303, "Attribute type 오류 : (오류 발생 attribute)")
+    OVER_SPECIFIED_SIZE = (64304, "지정된 사이즈 초과 : (사이즈 초과된 attribute)")
+    MISSING_CERTIFICATION_DOCUMENT = (64305, "발신번호 등록 시 통신서비스이용증명원 파일 누락")
+    EXCEED_MDN_REGISTRATION_QUANTITY = (64306, "발신번호 등록 시 발신번호 등록 개수 초과")
+    MISSING_MDN = (64307, "발신번호 등록 시 발신번호 누락")
+    INVALID_MDN_FORMAT = (64308, "발신번호 등록 시 발신번호 형식 오류")
+    MISSING_CHATBOT_NAME = (64309, "발신번호 등록 시 챗봇이름 누락")
+    INVALID_DISPLAY_FORMAT = (64310, "발신번호 등록 시 display 설정 형식 오류")
+    INVALID_SMSMO_FORMAT = (64311, "발신번호 등록 시 smsmo 형식 오류")
+    MISSING_MESSAGEBASEFORMID = (64312, "템플릿 등록 시 템플릿 양식 ID 누락")
+    INVALID_MESSAGEBASEFORMID = (64313, "템플릿 등록 시 템플릿 양식 ID 오류")
+    MISSING_TEMPLATE_NAME = (64314, "템플릿 등록 시 템플릿명 누락")
+    MISSING_BRANDID = (64315, "템플릿 등록 시 브랜드 ID 누락")
+    INVALID_BRANDID = (64316, "템플릿 등록 시 브랜드 ID 오류")
+    INVALID_AGENCYID = (64317, "템플릿 등록 시 대행사 ID 오류")
+    INVALID_FORMATTEDSTRING_FORMAT = (64318, "템플릿 등록 시 formattedString 형식 오류")
 
 
 # class RcsException(Exception):
