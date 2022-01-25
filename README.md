@@ -59,7 +59,28 @@ rcs_message = RcsMessage(message_info=MessageInfo(**message_info), **rcs)
 
 ```py
 print(rcs_message.send_info)
-common=CommonInfo(msgId='B01RDSFR.KcNNLk67ui.FDSAF432153214', userContact='01012341234', scheduleType=<ScheduleTypeEnum.IMMEDIATE: 0>, msgGroupId=None, msgServiceType=<MessageServiceTypeEnum.RCS: 'rcs'>) rcs=RcsInfo(chatbotId='0212351235', agencyId='ktbizrcs', messagebaseId='SCS00000', serviceType=<ServiceTypeEnum.SMS: 'RCSSMS'>, expiryOption=<ExpiryOptionEnum.AFTER_SETTING_TIMES: 2>, header=<HeaderEnum.NOT_ADVERTISE: '0'>, footer=None, cdrId='KT_freedsoft', copyAllowed=True, body=RcsSMSBody(title='타이틀', description='일반 RCSSMS 테스트 메시지 입니다.'), buttons=None, chipLists=None, replyId=None)
+common=CommonInfo(
+    msgId='B01RDSFR.KcNNLk67ui.FDSAF432153214',
+    userContact='01012341234',
+    scheduleType=<ScheduleTypeEnum.IMMEDIATE: 0>,
+    msgGroupId=None,
+    msgServiceType=<MessageServiceTypeEnum.RCS: 'rcs'>
+)
+rcs=RcsInfo(
+    chatbotId='0212351235',
+    agencyId='ktbizrcs',
+    messagebaseId='SCS00000',
+    serviceType=<ServiceTypeEnum.SMS: 'RCSSMS'>,
+    expiryOption=<ExpiryOptionEnum.AFTER_SETTING_TIMES: 2>,
+    header=<HeaderEnum.NOT_ADVERTISE: '0'>,
+    footer=None,
+    cdrId='KT_freedsoft',
+    copyAllowed=True,
+    body=RcsSMSBody(title='타이틀', description='일반 RCSSMS 테스트 메시지 입니다.'),
+    buttons=None,
+    chipLists=None,
+    replyId=None
+)
 ```
 
 ## Features
