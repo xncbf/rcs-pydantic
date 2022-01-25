@@ -7,25 +7,25 @@ from .errors import ErrorCodeEnum, LegacyErrorCodeEnum
 
 
 class RcsSMSBody(BaseModel):
-    title: str = Field(max_length=30)
+    title: Optional[str] = Field(max_length=30)
     description: str = Field(max_length=100)
     # TODO: media:
 
 
 class RcsLMSBody(BaseModel):
-    title: str = Field(max_length=30)
+    title: Optional[str] = Field(max_length=30)
     description: str = Field(max_length=1300)
     # TODO: media:
 
 
 class RcsMMSBody(BaseModel):
-    title: str = Field(max_length=30)
+    title: Optional[str] = Field(max_length=30)
     description: str = Field(max_length=1300)
     # TODO: media:
 
 
 class RcsCHATBody(BaseModel):
-    title: str = Field(max_length=30)
+    title: Optional[str] = Field(max_length=30)
     description: str = Field(max_length=1300)
     # TODO: media:
 
