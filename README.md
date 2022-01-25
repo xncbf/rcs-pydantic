@@ -30,7 +30,6 @@ pip install rcs-pydantic
 ## Quick start
 
 ```py
-import httpx
 from rcs_pydantic import MessageInfo, RcsMessage
 
 message_info = {
@@ -57,8 +56,8 @@ rcs = {
 rcs_message = RcsMessage(message_info=MessageInfo(**message_info), **rcs)
 ```
 
-```py
-print(rcs_message.send_info)
+```sh
+>>> print(rcs_message.send_info)
 common=CommonInfo(
     msgId='B01RDSFR.KcNNLk67ui.FDSAF432153214',
     userContact='01012341234',
@@ -81,6 +80,7 @@ rcs=RcsInfo(
     chipLists=None,
     replyId=None
 )
+>>>
 ```
 
 ## Features
