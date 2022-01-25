@@ -1,12 +1,12 @@
 from enum import Enum, IntEnum
 
 
-class MessageServiceTypeEnum(str, Enum):
+class MessageServiceTypeEnum(Enum):
     RCS: str = "rcs"
     LEGACY: str = "rcs, legacy"  # rcs 부달시, xMS로fallback전송
 
 
-class ServiceTypeEnum(str, Enum):
+class ServiceTypeEnum(Enum):
     SMS: str = "RCSSMS"
     LMS: str = "RCSLMS"
     MMS: str = "RCSMMS"
@@ -14,7 +14,7 @@ class ServiceTypeEnum(str, Enum):
     CHAT: str = "RCSCHAT"
 
 
-class LegacyServiceTypeEnum(str, Enum):
+class LegacyServiceTypeEnum(Enum):
     SMS: str = "SMS"
     LMS: str = "LMS"
 
@@ -28,7 +28,7 @@ class ExpiryOptionEnum(IntEnum):
     AFTER_SETTING_TIMES: int = 2
 
 
-class HeaderEnum(str, Enum):
+class HeaderEnum(Enum):
     """
     헤더 광고에 대한 정의
     0: 광고 넣지않음
@@ -39,7 +39,7 @@ class HeaderEnum(str, Enum):
     ADVERTISE: str = "1"
 
 
-class ActionEnum(str, Enum):
+class ActionEnum(Enum):
     URL_ACTION: str = "urlAction"  # 단말기에 기본 웹 브라우저로 설정된 앱을 통해서, 웹페이지로 이동할 수있습니다
     LOCAL_BROWSER_ACTION: str = "localBrowserAction"  # 단말기의 메시지 앱 내부 브라우저를 통해 웹페이지로 이동할 수 있습니다
     MAP_ACTION: str = "mapAction"  # 미리 지정된 위치를 보여주거나 사용자의 현재 위치를 서버로 전송 할 수 있습니다.
@@ -49,12 +49,12 @@ class ActionEnum(str, Enum):
     DIALER_ACTION: str = "dialerAction"  # 특정 전화번호로 전화를 걸 수 있습니다.
 
 
-class MessageStatusEnum(str, Enum):
+class MessageStatusEnum(Enum):
     SUCCESS: str = "success"
     FAIL: str = "fail"
 
 
-class MnoInfoEnum(str, Enum):
+class MnoInfoEnum(Enum):
     KT: str = "KT"
     SKT: str = "SKT"
     LGU: str = "LGU"
@@ -65,7 +65,24 @@ class BillEnum(IntEnum):
     CHARGE: int = 1
 
 
-class EventTypeEnum(str, Enum):
+class EventTypeEnum(Enum):
     MESSAGE: str = "message"
     RESPONSE: str = "response"
     NEW_USER: str = "newuser"
+
+
+class MessageEnum(Enum):
+    STANDALONE_1: str = "SCS00000"  # 기본 말풍선
+    STANDALONE_2: str = "SCL00000"  # 텍스트 카드
+    CAROUSEL_MEDIUM_1: str = "CCwMhM0200"  # 슬라이드형(Medium, 2장)
+    CAROUSEL_MEDIUM_2: str = "CCwMhM0300"  # 슬라이드형(Medium, 3장)
+    CAROUSEL_MEDIUM_3: str = "CCwMhM0400"  # 슬라이드형(Medium, 4장)
+    CAROUSEL_MEDIUM_4: str = "CCwMhM0500"  # 슬라이드형(Medium, 5장)
+    CAROUSEL_MEDIUM_5: str = "CCwMhM0600"  # 슬라이드형(Medium, 6장)
+    CAROUSEL_SMALL_1: str = "CCwShS0200"  # 슬라이드형(Small, 2장)
+    CAROUSEL_SMALL_2: str = "CCwShS0300"  # 슬라이드형(Small, 3장)
+    CAROUSEL_SMALL_3: str = "CCwShS0400"  # 슬라이드형(Small, 4장)
+    CAROUSEL_SMALL_4: str = "CCwShS0500"  # 슬라이드형(Small, 5장)
+    CAROUSEL_SMALL_5: str = "CCwShS0600"  # 슬라이드형(Small, 6장)
+    STANDALONE_MEDIA_TOP_1: str = "SCwThT00"  # 세로형(Tall)
+    STANDALONE_MEDIA_TOP_2: str = "SCwThM00"  # 세로형(Medium)

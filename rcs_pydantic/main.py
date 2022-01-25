@@ -6,21 +6,6 @@ from . import scheme
 
 
 class RcsMessage:
-    STANDALONE_1 = "SCS00000"  # 기본 말풍선
-    STANDALONE_2 = "SCL00000"  # 텍스트 카드
-    CAROUSEL_MEDIUM_1 = "CCwMhM0200"  # 슬라이드형(Medium, 2장)
-    CAROUSEL_MEDIUM_2 = "CCwMhM0300"  # 슬라이드형(Medium, 3장)
-    CAROUSEL_MEDIUM_3 = "CCwMhM0400"  # 슬라이드형(Medium, 4장)
-    CAROUSEL_MEDIUM_4 = "CCwMhM0500"  # 슬라이드형(Medium, 5장)
-    CAROUSEL_MEDIUM_5 = "CCwMhM0600"  # 슬라이드형(Medium, 6장)
-    CAROUSEL_SMALL_1 = "CCwShS0200"  # 슬라이드형(Small, 2장)
-    CAROUSEL_SMALL_2 = "CCwShS0300"  # 슬라이드형(Small, 3장)
-    CAROUSEL_SMALL_3 = "CCwShS0400"  # 슬라이드형(Small, 4장)
-    CAROUSEL_SMALL_4 = "CCwShS0500"  # 슬라이드형(Small, 5장)
-    CAROUSEL_SMALL_5 = "CCwShS0600"  # 슬라이드형(Small, 6장)
-    STANDALONE_MEDIA_TOP = "SCwThT00"  # 세로형(Tall)
-    STANDALONE_MEDIA_TOP = "SCwThM00"  # 세로형(Medium)
-
     def __init__(
         self,
         message_info: scheme.MessageInfo,
@@ -32,10 +17,10 @@ class RcsMessage:
             scheme.RcsTMPLBody,
         ],
         agency_id: Optional[str] = None,
-        message_base_id: str = STANDALONE_1,
-        service_type: str = "RCSSMS",
-        expiry_option: Optional[int] = None,
-        header: str = "0",
+        message_base_id: enums.MessageEnum = enums.MessageEnum.STANDALONE_1,
+        service_type: enums.ServiceTypeEnum = enums.ServiceTypeEnum.SMS,
+        expiry_option: Optional[enums.ExpiryOptionEnum] = None,
+        header: enums.HeaderEnum = enums.HeaderEnum.NOT_ADVERTISE,
         footer: Optional[str] = None,
         cdr_id: Optional[str] = None,
         copy_allowed: Optional[bool] = None,
