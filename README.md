@@ -1,6 +1,5 @@
-<p align="center">
-    <em>한국 통신사 rcs 를 위한 pydantic 구조체</em>
-</p>
+# RCS-PYDANTIC
+
 <p align="center">
 <a href="https://github.com/xncbf/rcs-pydantic/actions?query=workflow%3ATests+event%3Apush+branch%3Amain" target="_blank">
     <img src="https://github.com/xncbf/rcs-pydantic/workflows/Tests/badge.svg?event=push&branch=main" alt="Test">
@@ -16,10 +15,16 @@
 </a>
 </p>
 
-- [Installation](#installation)
-- [Quick start](#quick-start)
-- [Features](#features)
-- [Contribution](#contribution)
+- [RCS-PYDANTIC](#rcs-pydantic)
+  - [Introduce](#introduce)
+  - [Installation](#installation)
+  - [Quick start](#quick-start)
+  - [Features](#features)
+  - [Contribution](#contribution)
+
+## Introduce
+
+한국 통신사 rcs 를 위한 pydantic 구조체
 
 ## Installation
 
