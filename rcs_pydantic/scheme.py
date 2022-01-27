@@ -177,7 +177,7 @@ class RcsInfo(BaseModel):
     * Agency ID는 "Rcs Biz Center - 브랜드 운영관리" 에서 기업의 브랜드가 대행사 권한을 부여한 대행사의 ID
     Agency ID가 "ktbizrcs" 가 아닌 경우 필수 입력 필요.
     """
-    messagebaseId: str = Field(max_length=40)
+    messagebaseId: enums.MessageEnum
     serviceType: enums.ServiceTypeEnum
     expiryOption: Optional[enums.ExpiryOptionEnum]
     """
