@@ -1,4 +1,4 @@
-from typing import List, Optional, Union
+from typing import Dict, List, Optional, Union
 
 from pydantic import BaseModel, Field, validator
 
@@ -92,7 +92,8 @@ class MapActionInfo(BaseModel):
     미리 지정된 위치를 보여주거나 사용자의 현재 위치를 서버로 전송 할 수 있습니다.
     """
 
-    showLocation: ShowLocationInfo
+    showLocation: Optional[ShowLocationInfo]
+    requestLocationPush: Optional[Dict]
 
 
 class CalendarActionInfo(BaseModel):
