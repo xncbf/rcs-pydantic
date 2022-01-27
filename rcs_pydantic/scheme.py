@@ -133,6 +133,12 @@ class PostbackInfo(BaseModel):
 
 class ActionInfo(BaseModel):
     urlAction: Optional[UrlActionInfo]
+    localBrowserAction: Optional[LocalBrowserActionInfo]
+    mapAction: Optional[MapActionInfo]
+    calendarAction: Optional[CalendarActionInfo]
+    clipboardAction: Optional[ClipboardActionInfo]
+    composeAction: Optional[ComposeActionInfo]
+    dialerAction: Optional[DialerActionInfo]
     displayText: str = Field(max_length=200)
     postback: PostbackInfo
 
