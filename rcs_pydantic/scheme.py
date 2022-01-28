@@ -363,6 +363,32 @@ class ResponseInfo(BaseModel):
     data: dict
 
 
+class TextMessageInfo(BaseModel):
+    textMessage: str
+
+
+class FileMessage(BaseModel):
+    downloadField: str
+    mimeType: str
+    size: str
+
+
+class FileMessageInfo(BaseModel):
+    fileMessage: str
+
+
+class GeolocationPushMessage(BaseModel):
+    label: str
+    timestamp: str
+    timeOffset: str
+    pos: str
+    radius: int
+
+
+class UserLocationInfo(BaseModel):
+    geolocationPushMessage: GeolocationPushMessage
+
+
 class MessageInfo(BaseModel):
     replyId: str = Field(max_length=40)
     eventType: enums.EventTypeEnum
@@ -380,7 +406,7 @@ class MessageInfo(BaseModel):
     postBackId: Optional[str] = Field(max_length=40)
     postBackData: Optional[str] = Field(max_length=2048)
     displayText: Optional[str] = Field(max_length=200)
-    messageBody: Optional[str] = Field(max_length=10240)
+    messageBody: Union[TextMessageInfo, UserLocationInfo, FileMessageInfo, None]
     """
     eventType이message인 경우에만 설정
     - 텍스트 메시지의 경우 샘플

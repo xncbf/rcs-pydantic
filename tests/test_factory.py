@@ -139,9 +139,9 @@ def test_response_info_factory():
 
 def test_message_info_factory():
     with pytest.raises(ValueError):
-        factory.MessageInfoFactory(eventType=enums.EventTypeEnum.RESPONSE, messageBody=fake.sentence(nb_words=10)[:40])
+        factory.MessageInfoFactory(eventType=enums.EventTypeEnum.RESPONSE, messageBody={"textMessage": "안녕하세요?"})
 
-    factory.MessageInfoFactory(eventType=enums.EventTypeEnum.MESSAGE, messageBody=fake.sentence(nb_words=10)[:40])
+    factory.MessageInfoFactory(eventType=enums.EventTypeEnum.MESSAGE, messageBody={"textMessage": "안녕하세요?"})
     factory.MessageInfoFactory(eventType=enums.EventTypeEnum.MESSAGE, messageBody=None)
 
 

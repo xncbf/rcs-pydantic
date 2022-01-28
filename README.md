@@ -40,7 +40,7 @@ from rcs_pydantic import MessageInfo, RcsMessage
 message_info = {
     "replyId": "B01RDSFR.KcNNLk67ui.FDSAF432153214",
     "eventType":"message",
-    "messageBody": "{\"textMessage\":\"안녕하세요?\"}",
+    "messageBody": {"textMessage": "안녕하세요?"},
     "userContact":"01012341234",
     "chatbotId":"0212351235",
     "timestamp": "2020-03-03T04:43:55.867+09"
