@@ -311,7 +311,17 @@ class RcsInfo(BaseModel):
     - false: 복사 허용 하지 않음
     """
 
-    body: Union[RcsSMSBody, RcsLMSBody, RcsMMSBody, RcsCHATBody, RcsTMPLBody]
+    body: Union[
+        RcsSMSBody,
+        RcsLMSBody,
+        RcsMMSBody,
+        RcsCHATBody,
+        RcsTMPLBody,
+        RcsSMSCarouselBody,
+        RcsLMSCarouselBody,
+        RcsMMSCarouselBody,
+        RcsCHATCarouselBody,
+    ]
     """
     # body
     메시지베이스에서 치환할 파라미터의 정보를 담은 json object.
