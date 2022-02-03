@@ -9,25 +9,109 @@ from .errors import ErrorCodeEnum, LegacyErrorCodeEnum
 class RcsSMSBody(BaseModel):
     title: Optional[str] = Field(max_length=30)
     description: str = Field(max_length=100)
-    # TODO: media:
+    media: Optional[str]
 
 
 class RcsLMSBody(BaseModel):
     title: Optional[str] = Field(max_length=30)
     description: str = Field(max_length=1300)
-    # TODO: media:
+    media: Optional[str]
 
 
 class RcsMMSBody(BaseModel):
     title: Optional[str] = Field(max_length=30)
     description: str = Field(max_length=1300)
-    # TODO: media:
+    media: Optional[str]
 
 
 class RcsCHATBody(BaseModel):
     title: Optional[str] = Field(max_length=30)
     description: str = Field(max_length=1300)
-    # TODO: media:
+    media: Optional[str]
+
+
+class RcsSMSCarouselBody(BaseModel):
+    title1: Optional[str] = Field(max_length=30)
+    description1: str = Field(max_length=100)
+    media1: Optional[str]
+    title2: Optional[str] = Field(max_length=30)
+    description2: Optional[str] = Field(max_length=100)
+    media2: Optional[str]
+    title3: Optional[str] = Field(max_length=30)
+    description3: Optional[str] = Field(max_length=100)
+    media3: Optional[str]
+    title4: Optional[str] = Field(max_length=30)
+    description4: Optional[str] = Field(max_length=100)
+    media4: Optional[str]
+    title5: Optional[str] = Field(max_length=30)
+    description5: Optional[str] = Field(max_length=100)
+    media5: Optional[str]
+    title6: Optional[str] = Field(max_length=30)
+    description6: Optional[str] = Field(max_length=100)
+    media6: Optional[str]
+
+
+class RcsLMSCarouselBody(BaseModel):
+    title1: Optional[str] = Field(max_length=30)
+    description1: str = Field(max_length=100)
+    media1: Optional[str]
+    title2: Optional[str] = Field(max_length=30)
+    description2: Optional[str] = Field(max_length=100)
+    media2: Optional[str]
+    title3: Optional[str] = Field(max_length=30)
+    description3: Optional[str] = Field(max_length=100)
+    media3: Optional[str]
+    title4: Optional[str] = Field(max_length=30)
+    description4: Optional[str] = Field(max_length=100)
+    media4: Optional[str]
+    title5: Optional[str] = Field(max_length=30)
+    description5: Optional[str] = Field(max_length=100)
+    media5: Optional[str]
+    title6: Optional[str] = Field(max_length=30)
+    description6: Optional[str] = Field(max_length=100)
+    media6: Optional[str]
+
+
+class RcsMMSCarouselBody(BaseModel):
+    title1: Optional[str] = Field(max_length=30)
+    description1: str = Field(max_length=100)
+    media1: Optional[str]
+    title2: Optional[str] = Field(max_length=30)
+    description2: Optional[str] = Field(max_length=100)
+    media2: Optional[str]
+    title3: Optional[str] = Field(max_length=30)
+    description3: Optional[str] = Field(max_length=100)
+    media3: Optional[str]
+    title4: Optional[str] = Field(max_length=30)
+    description4: Optional[str] = Field(max_length=100)
+    media4: Optional[str]
+    title5: Optional[str] = Field(max_length=30)
+    description5: Optional[str] = Field(max_length=100)
+    media5: Optional[str]
+    title6: Optional[str] = Field(max_length=30)
+    description6: Optional[str] = Field(max_length=100)
+    media6: Optional[str]
+
+
+class RcsCHATCarouselBody(BaseModel):
+    title1: Optional[str] = Field(max_length=30)
+    description1: str = Field(max_length=100)
+    media1: Optional[str]
+    title2: Optional[str] = Field(max_length=30)
+    description2: Optional[str] = Field(max_length=100)
+    media2: Optional[str]
+    title3: Optional[str] = Field(max_length=30)
+    description3: Optional[str] = Field(max_length=100)
+    media3: Optional[str]
+    title4: Optional[str] = Field(max_length=30)
+    description4: Optional[str] = Field(max_length=100)
+    media4: Optional[str]
+    title5: Optional[str] = Field(max_length=30)
+    description5: Optional[str] = Field(max_length=100)
+    media5: Optional[str]
+    title6: Optional[str] = Field(max_length=30)
+    description6: Optional[str] = Field(max_length=100)
+    media6: Optional[str]
 
 
 class RcsTMPLBody(BaseModel):
