@@ -17,7 +17,7 @@ class RcsMessage:
             scheme.RcsTMPLBody,
         ],
         agency_id: Optional[str] = None,
-        message_base_id: enums.MessageEnum = enums.MessageEnum.STANDALONE_1,
+        message_base_id: Union[enums.MessageEnum, enums.RCSMessageEnum] = enums.MessageEnum.STANDALONE_1,
         service_type: enums.ServiceTypeEnum = enums.ServiceTypeEnum.SMS,
         expiry_option: Optional[enums.ExpiryOptionEnum] = None,
         header: enums.HeaderEnum = enums.HeaderEnum.NOT_ADVERTISE,
