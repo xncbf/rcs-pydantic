@@ -39,7 +39,8 @@ class RcsMessage:
         self.body = body
         self.buttons = buttons
         self.send_info = scheme.SendInfo(
-            common=self.make_common_info(message_info), rcs=self.make_rcs_info(message_info)
+            common=scheme.CommonInfo(**self.make_common_info(message_info)),
+            rcs=scheme.RcsInfo(**self.make_rcs_info(message_info)),
         )
 
     def make_common_info(self, message_info: scheme.MessageInfo) -> scheme.CommonInfo:
@@ -48,7 +49,7 @@ class RcsMessage:
             userContact=message_info.userContact,
             scheduleType=0,
             msgServiceType=enums.MessageServiceTypeEnum.RCS,
-        )
+        ).dict(exclude_unset=True)
 
     def make_rcs_info(self, message_info: scheme.MessageInfo) -> scheme.RcsInfo:
         rcs_info = scheme.RcsInfo(
@@ -70,7 +71,7 @@ class RcsMessage:
             rcs_info.copyAllowed = self.copy_allowed
         if self.buttons:
             rcs_info.buttons = self.buttons
-        return rcs_info
+        return rcs_info.dict(exclude_unset=True)
 
     def send(self):
         self.send_info
