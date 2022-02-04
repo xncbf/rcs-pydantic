@@ -44,7 +44,7 @@ class RcsMessage:
 
     def make_common_info(self, message_info: scheme.MessageInfo) -> scheme.CommonInfo:
         return scheme.CommonInfo(
-            msgId=uuid.uuid4(),
+            msgId=str(uuid.uuid4()),
             userContact=message_info.userContact,
             scheduleType=0,
             msgServiceType=enums.MessageServiceTypeEnum.RCS,
