@@ -1,3 +1,4 @@
+import uuid
 from typing import Optional, Union
 
 from rcs_pydantic import enums
@@ -43,7 +44,7 @@ class RcsMessage:
 
     def make_common_info(self, message_info: scheme.MessageInfo) -> scheme.CommonInfo:
         return scheme.CommonInfo(
-            msgId=message_info.replyId,
+            msgId=uuid.uuid4(),
             userContact=message_info.userContact,
             scheduleType=0,
             msgServiceType=enums.MessageServiceTypeEnum.RCS,
