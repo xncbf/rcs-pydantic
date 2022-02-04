@@ -1,5 +1,6 @@
 from faker import Faker
 
+from rcs_pydantic.errors import ErrorCodeEnum
 from rcs_pydantic.main import RcsMessage
 
 from . import factory
@@ -15,3 +16,7 @@ def test_rcs_message():
         buttons=[factory.ButtonInfoFactory()],
     )
     rcs_message.send()
+
+
+def test_tuple_enum_has_value():
+    assert ErrorCodeEnum.has_value(ErrorCodeEnum.MISSING_AUTHORIZATION_HEADER.value[0])

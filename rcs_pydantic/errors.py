@@ -9,6 +9,10 @@ class TupleEnum(Enum):
                 return item
         return super()._missing_(value)
 
+    @classmethod
+    def has_value(cls, value):
+        return value in [x[0] for x in cls._value2member_map_]
+
 
 class LegacyErrorCodeEnum(str, TupleEnum):
     pass

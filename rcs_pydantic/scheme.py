@@ -539,7 +539,7 @@ class MessageInfo(BaseModel):
 
     userContact: str = Field(max_length=40)
     chatbotId: str = Field(max_length=40)
-    timestamp: str = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}$")
+    timeStamp: str = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}$")
 
 
 class SendInfo(BaseModel):

@@ -68,7 +68,7 @@ class BillEnum(IntEnum):
 class EventTypeEnum(Enum):
     MESSAGE: str = "message"
     RESPONSE: str = "response"
-    NEW_USER: str = "newuser"
+    NEW_USER: str = "newUser"
 
 
 class RCSMessageEnum(Enum):

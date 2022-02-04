@@ -290,7 +290,7 @@ class MessageInfoFactory(factory.Factory):
     chatbotId: str = factory.LazyAttribute(lambda n: fake.sentence(nb_words=10)[:40])
 
     @factory.lazy_attribute
-    def timestamp(self) -> str:
+    def timeStamp(self) -> str:
         t = datetime.now()
         s: str = t.strftime("%Y-%m-%dT%H:%M:%S.%f")
         s = s[:-3]
