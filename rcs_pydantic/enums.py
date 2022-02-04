@@ -72,32 +72,32 @@ class EventTypeEnum(Enum):
 
 
 class RCSMessageEnum(Enum):
-    STANDALONE_1: str = "SCS00000"  # 기본 말풍선
-    STANDALONE_2: str = "SCL00000"  # 텍스트 카드
-    CAROUSEL_MEDIUM_1: str = "CCwMhM0200"  # 슬라이드형(Medium, 2장)
-    CAROUSEL_MEDIUM_2: str = "CCwMhM0300"  # 슬라이드형(Medium, 3장)
-    CAROUSEL_MEDIUM_3: str = "CCwMhM0400"  # 슬라이드형(Medium, 4장)
-    CAROUSEL_MEDIUM_4: str = "CCwMhM0500"  # 슬라이드형(Medium, 5장)
-    CAROUSEL_MEDIUM_5: str = "CCwMhM0600"  # 슬라이드형(Medium, 6장)
-    CAROUSEL_SMALL_1: str = "CCwShS0200"  # 슬라이드형(Small, 2장)
-    CAROUSEL_SMALL_2: str = "CCwShS0300"  # 슬라이드형(Small, 3장)
-    CAROUSEL_SMALL_3: str = "CCwShS0400"  # 슬라이드형(Small, 4장)
-    CAROUSEL_SMALL_4: str = "CCwShS0500"  # 슬라이드형(Small, 5장)
-    CAROUSEL_SMALL_5: str = "CCwShS0600"  # 슬라이드형(Small, 6장)
-    STANDALONE_MEDIA_TOP_1: str = "SCwThT00"  # 세로형(Tall)
-    STANDALONE_MEDIA_TOP_2: str = "SCwThM00"  # 세로형(Medium)
+    SMS: str = "SCS00000"  # 기본 말풍선 (SMS)
+    LMS: str = "SCL00000"  # 텍스트 카드 (LMS)
+    CAROUSEL_MEDIUM_2: str = "CCwMhM0200"  # 슬라이드형(Medium, 2장)
+    CAROUSEL_MEDIUM_3: str = "CCwMhM0300"  # 슬라이드형(Medium, 3장)
+    CAROUSEL_MEDIUM_4: str = "CCwMhM0400"  # 슬라이드형(Medium, 4장)
+    CAROUSEL_MEDIUM_5: str = "CCwMhM0500"  # 슬라이드형(Medium, 5장)
+    CAROUSEL_MEDIUM_6: str = "CCwMhM0600"  # 슬라이드형(Medium, 6장)
+    CAROUSEL_SMALL_2: str = "CCwShS0200"  # 슬라이드형(Small, 2장)
+    CAROUSEL_SMALL_3: str = "CCwShS0300"  # 슬라이드형(Small, 3장)
+    CAROUSEL_SMALL_4: str = "CCwShS0400"  # 슬라이드형(Small, 4장)
+    CAROUSEL_SMALL_5: str = "CCwShS0500"  # 슬라이드형(Small, 5장)
+    CAROUSEL_SMALL_6: str = "CCwShS0600"  # 슬라이드형(Small, 6장)
+    STANDALONE_MEDIA_TOP_TALL: str = "SCwThT00"  # 세로형(Tall)
+    STANDALONE_MEDIA_TOP_MEDIUM: str = "SCwThM00"  # 세로형(Medium)
 
 
 class MessageEnum(Enum):
-    STANDALONE_1: str = "SS000000"  # 기본 말풍선
-    STANDALONE_2: str = "SL000000"  # 텍스트 카드
-    STANDALONE_MEDIA_TOP_1: str = "SMwThT00"  # 세로형(Tall)
-    STANDALONE_MEDIA_TOP_2: str = "SMwThM00"  # 세로형(Medium)
-    CAROUSEL_MEDIUM_2: str = "CMwMhM0300"  # 슬라이드형(Medium, 3장)
-    CAROUSEL_MEDIUM_3: str = "CMwMhM0400"  # 슬라이드형(Medium, 4장)
-    CAROUSEL_MEDIUM_4: str = "CMwMhM0500"  # 슬라이드형(Medium, 5장)
-    CAROUSEL_MEDIUM_5: str = "CMwMhM0600"  # 슬라이드형(Medium, 6장)
-    CAROUSEL_SMALL_2: str = "CMwShS0300"  # 슬라이드형(Small, 3장)
-    CAROUSEL_SMALL_3: str = "CMwShS0400"  # 슬라이드형(Small, 4장)
-    CAROUSEL_SMALL_4: str = "CMwShS0500"  # 슬라이드형(Small, 5장)
-    CAROUSEL_SMALL_5: str = "CMwShS0600"  # 슬라이드형(Small, 6장)
+    SMS: str = "SS000000"  # 기본 말풍선 (SMS)
+    LMS: str = "SL000000"  # 텍스트 카드 (LMS)
+    STANDALONE_MEDIA_TOP_TALL: str = "SMwThT00"  # 세로형(Tall)
+    STANDALONE_MEDIA_TOP_MEDIUM: str = "SMwThM00"  # 세로형(Medium)
+    CAROUSEL_MEDIUM_3: str = "CMwMhM0300"  # 슬라이드형(Medium, 3장)
+    CAROUSEL_MEDIUM_4: str = "CMwMhM0400"  # 슬라이드형(Medium, 4장)
+    CAROUSEL_MEDIUM_5: str = "CMwMhM0500"  # 슬라이드형(Medium, 5장)
+    CAROUSEL_MEDIUM_6: str = "CMwMhM0600"  # 슬라이드형(Medium, 6장)
+    CAROUSEL_SMALL_3: str = "CMwShS0300"  # 슬라이드형(Small, 3장)
+    CAROUSEL_SMALL_4: str = "CMwShS0400"  # 슬라이드형(Small, 4장)
+    CAROUSEL_SMALL_5: str = "CMwShS0500"  # 슬라이드형(Small, 5장)
+    CAROUSEL_SMALL_6: str = "CMwShS0600"  # 슬라이드형(Small, 6장)
