@@ -19,7 +19,13 @@
   - [Introduce](#introduce)
   - [Installation](#installation)
   - [Quick start](#quick-start)
+  - [제공되는 항목](#제공되는-항목)
+    - [제공되는 데이터 구조체](#제공되는-데이터-구조체)
+    - [제공되는 데이터 관련 Enum](#제공되는-데이터-관련-enum)
+    - [제공되는 에러 코드 Enum](#제공되는-에러-코드-enum)
   - [Features](#features)
+    - [RcsMessage](#rcsmessage)
+    - [MessageException](#messageexception)
   - [Contribution](#contribution)
 
 ## Introduce
@@ -39,18 +45,17 @@ from rcs_pydantic import MessageInfo, RcsMessage
 
 message_info = {
     "replyId": "B01RDSFR.KcNNLk67ui.FDSAF432153214",
-    "eventType":"message",
-    "messageBody": {"textMessage": "안녕하세요?"},
+    "eventType":"newUser",
+    "displayText": "안녕",
     "userContact":"01012341234",
     "chatbotId":"0212351235",
-    "timestamp": "2020-03-03T04:43:55.867+09"
+    "timeStamp": "2020-03-03T04:43:55.867+09"
 }
 
 rcs = {
-    "message_base_id": "SCS00000",
+    "message_base_id": "SS000000",
     "service_type": "RCSSMS",
-    "header": "0",
-    "cdr_id": "KT_rcsid",
+    "agency_id": "<str: agency_id>",
     "body": {
         "title": "타이틀",
         "description": "일반 RCSSMS 테스트 메시지 입니다."
@@ -64,34 +69,148 @@ rcs_message = RcsMessage(message_info=MessageInfo(**message_info), **rcs)
 ```sh
 >>> print(rcs_message.send_info)
 common=CommonInfo(
-    msgId='B01RDSFR.KcNNLk67ui.FDSAF432153214',
+    msgId='4be0072f-0f05-4b3a-adc8-90d7ef309c53',
     userContact='01012341234',
     scheduleType=<ScheduleTypeEnum.IMMEDIATE: 0>,
-    msgGroupId=None,
     msgServiceType=<MessageServiceTypeEnum.RCS: 'rcs'>
 )
 rcs=RcsInfo(
     chatbotId='0212351235',
-    agencyId='ktbizrcs',
-    messagebaseId='SCS00000',
+    agencyId='<str: agency_id>',
+    messagebaseId='SS000000',
     serviceType=<ServiceTypeEnum.SMS: 'RCSSMS'>,
     expiryOption=<ExpiryOptionEnum.AFTER_SETTING_TIMES: 2>,
     header=<HeaderEnum.NOT_ADVERTISE: '0'>,
-    footer=None,
-    cdrId='KT_rcsid',
     copyAllowed=True,
     body=RcsSMSBody(title='타이틀', description='일반 RCSSMS 테스트 메시지 입니다.'),
-    buttons=None,
-    chipLists=None,
-    replyId=None
 )
 >>>
 ```
 
+## 제공되는 항목
+
+국내 통신사 RCS 문서에서 제공되는 모든 데이터 구조체를 지원합니다.
+
+### 제공되는 데이터 구조체
+
+```python
+RcsSMSBody
+RcsLMSBody
+RcsMMSBody
+RcsCHATBody
+RcsTMPLBody
+RcsSMSCarouselBody
+RcsLMSCarouselBody
+RcsMMSCarouselBody
+RcsCHATCarouselBody
+LocationInfo
+ShowLocationInfo
+OpenUrlInfo
+CreateCalendarEventInfo
+CopyToClipboardInfo
+ComposeTextMessageInfo
+DialPhoneNumberInfo
+UrlActionInfo
+LocalBrowserActionInfo
+MapActionInfo
+CalendarActionInfo
+ClipboardActionInfo
+ComposeActionInfo
+DialActionInfo
+PostbackInfo
+ActionInfo
+SuggestionInfo
+ButtonInfo
+CommonInfo
+RcsInfo
+LegacyInfo
+StatusInfo
+QuerystatusInfo
+ErrorInfo
+ResponseErrorInfo
+ResponseInfo
+MessageInfo
+SendInfo
+TokenInfo
+```
+
+### 제공되는 데이터 관련 Enum
+
+```python
+EventTypeEnum
+RCSMessageEnum
+MessageEnum
+MessageStatusEnum
+MnoInfoEnum
+BillEnum
+MessageServiceTypeEnum
+ServiceTypeEnum
+LegacyServiceTypeEnum
+ScheduleTypeEnum
+ExpiryOptionEnum
+HeaderEnum
+ActionEnum
+```
+
+### 제공되는 에러 코드 Enum
+
+```python
+LegacyErrorCodeEnum
+ErrorCodeEnum
+MaaPErrorCodeEnum
+RcsBizCenterErrorCodeEnum
+KTErrorCodeEnum
+RCSErrorCode
+```
+
 ## Features
 
-TODO
+### RcsMessage
+
+`RcsMessage` 클래스는 메세지 전송을 위한 `SendInfo` 구조체를 만듭니다.
+
+```py
+from rcs_pydantic import MessageInfo, RcsMessage
+
+message_info = {
+    "replyId": "B01RDSFR.KcNNLk67ui.FDSAF432153214",
+    "eventType":"newUser",
+    "displayText": "안녕",
+    "userContact":"01012341234",
+    "chatbotId":"0212351235",
+    "timeStamp": "2020-03-03T04:43:55.867+09"
+}
+
+rcs = {
+    "message_base_id": "SS000000",
+    "service_type": "RCSSMS",
+    "agency_id": "<str: agency_id>",
+    "body": {
+        "title": "타이틀",
+        "description": "일반 RCSSMS 테스트 메시지 입니다."
+    }
+}
+
+
+rcs_message = RcsMessage(message_info=MessageInfo(**message_info), **rcs)
+```
+
+### MessageException
+
+`MessageException` 예외 클래스는 여러 종류의 모든 error 코드를 포함하는 예외 클래스입니다.
+
+```python
+from rcs_pydantic.exceptions import MessageException
+
+raise MessageException(40003)
+```
 
 ## Contribution
 
-TODO
+이 프로젝트는 기여를 환영합니다!
+
+패치를 제출하기 전에 issue 티켓을 먼저 제출해주세요.
+
+Pull request 는 `main` 브랜치로 머지되며 항상 사용 가능한 상태로 유지해야 합니다.
+
+모든 테스트 코드를 통과한 뒤 리뷰한 후 머지됩니다.
