@@ -7,7 +7,6 @@ class TupleEnum(Enum):
         for item in cls:
             if item.value[0] == value:
                 return item
-        return super()._missing_(value)
 
     @classmethod
     def has_value(cls, value):
