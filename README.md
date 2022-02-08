@@ -18,7 +18,7 @@
 - [RCS-PYDANTIC](#rcs-pydantic)
   - [Introduce](#introduce)
   - [Installation](#installation)
-  - [Dependancy](#dependancy)
+  - [Dependency](#dependency)
   - [Quick start](#quick-start)
   - [제공되는 항목](#제공되는-항목)
     - [제공되는 데이터 pydantic 모델](#제공되는-데이터-pydantic-모델)
@@ -39,7 +39,7 @@
 pip install rcs-pydantic
 ```
 
-## Dependancy
+## Dependency
 
 - python3.x (3.7 이상)
 - pydantic
