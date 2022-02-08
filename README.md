@@ -33,6 +33,8 @@
 
 한국 통신사 rcs 를 위한 pydantic 모델
 
+[fastapi](https://github.com/tiangolo/fastapi) 또는 [django-ninja](https://github.com/vitalik/django-ninja) 와 함께 사용할 때 유용합니다.
+
 ## Installation
 
 ```sh
