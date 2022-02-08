@@ -94,6 +94,8 @@ rcs=RcsInfo(
 ### 제공되는 데이터 구조체
 
 ```python
+RcsMessage
+RCSErrorCode
 RcsSMSBody
 RcsLMSBody
 RcsMMSBody
@@ -129,6 +131,10 @@ QuerystatusInfo
 ErrorInfo
 ResponseErrorInfo
 ResponseInfo
+TextMessageInfo
+FileMessageInfo
+GeolocationPushMessage
+UserLocationInfo
 MessageInfo
 SendInfo
 TokenInfo
