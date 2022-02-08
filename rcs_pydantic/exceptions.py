@@ -13,3 +13,6 @@ class MessageException(Exception):
             self.message = errors.KTErrorCodeEnum(message).name.lower()
         else:
             self.message = "unknown"
+
+    def __str__(self):
+        return self.message

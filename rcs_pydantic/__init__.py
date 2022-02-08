@@ -6,7 +6,6 @@ from .scheme import *
 
 __all__ = [
     "RcsMessage",
-    "RCSErrorCode",
     "RcsSMSBody",
     "RcsLMSBody",
     "RcsMMSBody",

@@ -20,7 +20,7 @@
   - [Installation](#installation)
   - [Quick start](#quick-start)
   - [제공되는 항목](#제공되는-항목)
-    - [제공되는 데이터 구조체](#제공되는-데이터-구조체)
+    - [제공되는 데이터 pydantic 모델](#제공되는-데이터-pydantic-모델)
     - [제공되는 데이터 관련 Enum](#제공되는-데이터-관련-enum)
     - [제공되는 에러 코드 Enum](#제공되는-에러-코드-enum)
   - [Features](#features)
@@ -30,7 +30,7 @@
 
 ## Introduce
 
-한국 통신사 rcs 를 위한 pydantic 구조체
+한국 통신사 rcs 를 위한 pydantic 모델
 
 ## Installation
 
@@ -89,13 +89,11 @@ rcs=RcsInfo(
 
 ## 제공되는 항목
 
-국내 통신사 RCS 문서에서 제공되는 모든 데이터 구조체를 지원합니다.
+국내 통신사 RCS 문서에서 제공되는 모든 데이터를 pydandic 모델로써 지원합니다.
 
-### 제공되는 데이터 구조체
+### 제공되는 데이터 pydantic 모델
 
 ```python
-RcsMessage
-RCSErrorCode
 RcsSMSBody
 RcsLMSBody
 RcsMMSBody
@@ -161,19 +159,18 @@ ActionEnum
 ### 제공되는 에러 코드 Enum
 
 ```python
-LegacyErrorCodeEnum
 ErrorCodeEnum
 MaaPErrorCodeEnum
 RcsBizCenterErrorCodeEnum
 KTErrorCodeEnum
-RCSErrorCode
+LegacyErrorCodeEnum
 ```
 
 ## Features
 
 ### RcsMessage
 
-`RcsMessage` 클래스는 메세지 전송을 위한 `SendInfo` 구조체를 만듭니다.
+`RcsMessage` 클래스는 서버로 수신된 `MessageInfo` 메세지 모델을 기반으로 메세지 전송을 위한 `SendInfo` 모델을 만듭니다.
 
 ```py
 from rcs_pydantic import MessageInfo, RcsMessage
@@ -203,12 +200,30 @@ rcs_message = RcsMessage(message_info=MessageInfo(**message_info), **rcs)
 
 ### MessageException
 
-`MessageException` 예외 클래스는 여러 종류의 모든 error 코드를 포함하는 예외 클래스입니다.
+`MessageException` 예외 클래스는 제공되는 모든 에러 코드 Enum 을 포함하는 예외 클래스입니다.
+
+다음과 같이 여러 Enum 코드중 한가지를 메세지로 반환합니다.
 
 ```python
+from rcs_pydantic.errors import ErrorCodeEnum
 from rcs_pydantic.exceptions import MessageException
+try:
+    raise MessageException(ErrorCodeEnum.MISSING_AUTHORIZATION_HEADER.value[0])
+except MessageException as e:
+    print(f"ERROR MESSAGE: {e}")
 
-raise MessageException(40003)
+ERROR MESSAGE: missing_authorization_header
+>>>
+```
+
+다음과 같이 `has_value` 를 통해 특정 `Enum` 에 포함된 에러인지 확인할 수 있습니다.
+
+```python
+>>> from rcs_pydantic.errors import ErrorCodeEnum
+... ErrorCodeEnum.has_value(40003)
+True
+>>> ErrorCodeEnum.has_value(11111)
+False
 ```
 
 ## Contribution
