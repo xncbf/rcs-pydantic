@@ -220,7 +220,7 @@ try:
 except MessageException as e:
     print(f"ERROR MESSAGE: {e}")
 
-ERROR MESSAGE: missing_authorization_header
+ERROR MESSAGE: Valid access token in Authorization header is required for RESTful API calls.
 >>>
 ```
 

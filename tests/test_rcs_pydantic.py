@@ -33,8 +33,8 @@ def test_exception_error_message():
     try:
         raise MessageException(ErrorCodeEnum.MISSING_AUTHORIZATION_HEADER.value[0])
     except MessageException as e:
-        assert e.message == "missing_authorization_header"
-        assert str(e) == "missing_authorization_header"
+        assert e.message == "Valid access token in Authorization header is required for RESTful API calls."
+        assert str(e) == "Valid access token in Authorization header is required for RESTful API calls."
 
 
 def test_error_code_message_exception():
