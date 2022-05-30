@@ -1,3 +1,4 @@
+import json
 from typing import Dict, List, Optional, Union
 
 from pydantic import BaseModel, Field, validator
@@ -534,12 +535,12 @@ class MessageInfo(BaseModel):
     def check_message_body(cls, v, values, **kwargs):
         if v:
             if values["eventType"] == enums.EventTypeEnum.MESSAGE:
-                return v
+                return json.loads(v)
             raise ValueError("messageBody is not allowed")
 
     userContact: str = Field(max_length=40)
     chatbotId: str = Field(max_length=40)
-    timeStamp: str = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}$")
+    timestamp: str = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}$")
 
 
 class SendInfo(BaseModel):
