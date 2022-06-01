@@ -57,7 +57,7 @@ message_info = {
     "displayText": "안녕",
     "userContact":"01012341234",
     "chatbotId":"0212351235",
-    "timeStamp": "2020-03-03T04:43:55.867+09"
+    "timestamp": "2020-03-03T04:43:55.867+09"
 }
 
 rcs = {
