@@ -2,7 +2,6 @@ import json
 from typing import Dict, List, Optional, Union
 
 from pydantic import BaseModel, Field, validator
-from pydantic.error_wrappers import ValidationError
 
 from . import enums
 from .errors import ErrorCodeEnum, LegacyErrorCodeEnum
@@ -502,7 +501,7 @@ class MessageInfo(BaseModel):
     postBackId: Optional[str] = Field(max_length=40)
     postBackData: Optional[str] = Field(max_length=2048)
     displayText: Optional[str] = Field(max_length=200)
-    messageBody: Optional[str]
+    messageBody: Union[TextMessageInfo, UserLocationInfo, FileMessageInfo, None]
     """
     eventType이message인 경우에만 설정
     - 텍스트 메시지의 경우 샘플
@@ -536,13 +535,7 @@ class MessageInfo(BaseModel):
     def check_message_body(cls, v, values, **kwargs):
         if v:
             if values["eventType"] == enums.EventTypeEnum.MESSAGE:
-                v = json.loads(v)
-                for basemodel in [TextMessageInfo, UserLocationInfo, FileMessageInfo]:
-                    try:
-                        return basemodel(**v)
-                    except ValidationError:
-                        pass
-                raise ValueError("Invalid messageBody")
+                return json.loads(v)
             raise ValueError("messageBody is not allowed")
 
     userContact: str = Field(max_length=40)
