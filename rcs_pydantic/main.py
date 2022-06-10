@@ -75,6 +75,8 @@ class RcsMessage:
             rcs_info.copyAllowed = self.copy_allowed
         if self.buttons:
             rcs_info.buttons = self.buttons
+        if message_info.replyId:
+            rcs_info.replyId = message_info.replyId
         return rcs_info.dict(exclude_unset=True)
 
     def send(self):
