@@ -1,4 +1,3 @@
-import json
 from typing import Dict, List, Optional, Union
 
 from pydantic import BaseModel, Field, validator
@@ -535,7 +534,7 @@ class MessageInfo(BaseModel):
     def check_message_body(cls, v, values, **kwargs):
         if v:
             if values["eventType"] == enums.EventTypeEnum.MESSAGE:
-                return json.loads(v)
+                return v
             raise ValueError("messageBody is not allowed")
 
     userContact: str = Field(max_length=40)
