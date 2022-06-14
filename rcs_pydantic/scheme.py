@@ -358,7 +358,7 @@ class RcsInfo(BaseModel):
       - "media" :"maapfile://{fileId}"
     """
 
-    buttons: Optional[List[ButtonInfo, EmptyDict]]
+    buttons: Optional[List[Union[ButtonInfo, EmptyDict]]]
     """
     # buttons
     GSMA RCC.07의3.6.10.4의 ‘suggestions’ 규격에 준하여 버튼을 구성
