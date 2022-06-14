@@ -6,6 +6,20 @@ from . import enums
 from .errors import ErrorCodeEnum, LegacyErrorCodeEnum
 
 
+class EmptyDict:
+    @classmethod
+    def __get_validators__(cls):
+        yield cls.validate
+
+    @classmethod
+    def validate(cls, v):
+        if not isinstance(v, dict):
+            raise TypeError("dict required")
+        if len(v.keys()) > 0:
+            raise ValueError("dict must be empty")
+        return []
+
+
 class RcsSMSBody(BaseModel):
     title: Optional[str] = Field(max_length=30)
     description: str = Field(max_length=100)
@@ -344,7 +358,7 @@ class RcsInfo(BaseModel):
       - "media" :"maapfile://{fileId}"
     """
 
-    buttons: Optional[List[ButtonInfo]]
+    buttons: Optional[List[ButtonInfo, EmptyDict]]
     """
     # buttons
     GSMA RCC.07의3.6.10.4의 ‘suggestions’ 규격에 준하여 버튼을 구성
