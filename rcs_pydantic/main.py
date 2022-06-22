@@ -15,7 +15,7 @@ class RcsMessage:
             scheme.RcsLMSBody,
             scheme.RcsMMSBody,
             scheme.RcsCHATBody,
-            scheme.RcsTMPLBody,
+            # scheme.RcsTMPLBody,
             scheme.RcsSMSCarouselBody,
             scheme.RcsLMSCarouselBody,
             scheme.RcsMMSCarouselBody,

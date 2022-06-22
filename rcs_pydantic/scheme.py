@@ -330,7 +330,7 @@ class RcsInfo(BaseModel):
         RcsLMSBody,
         RcsMMSBody,
         RcsCHATBody,
-        RcsTMPLBody,
+        # RcsTMPLBody,
         RcsSMSCarouselBody,
         RcsLMSCarouselBody,
         RcsMMSCarouselBody,
