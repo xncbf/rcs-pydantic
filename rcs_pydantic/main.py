@@ -67,6 +67,8 @@ class RcsMessage:
             rcs_info.agencyId = self.agency_id
         if self.expiry_option:
             rcs_info.expiryOption = self.expiry_option
+        elif self.service_type == enums.ServiceTypeEnum.CHAT:
+            rcs_info.expiryOption = enums.ExpiryOptionEnum.AFTER_SETTING_TIMES
         if self.footer:
             rcs_info.footer = self.footer
         if self.cdr_id:
