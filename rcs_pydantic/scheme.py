@@ -145,8 +145,15 @@ class ShowLocationInfo(BaseModel):
     location: LocationInfo
 
 
+class PostParameterInfo(BaseModel):
+    P_NAME: str
+    P_MID: str
+
+
 class OpenUrlInfo(BaseModel):
     url: str
+    isHalfView: Optional[str] = Field(default="false")
+    postParameter: Optional[PostParameterInfo]
 
 
 class CreateCalendarEventInfo(BaseModel):
