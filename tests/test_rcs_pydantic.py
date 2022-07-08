@@ -2,6 +2,7 @@ import pytest
 from faker import Faker
 from pydantic import BaseModel
 
+from rcs_pydantic import enums
 from rcs_pydantic.errors import ErrorCodeEnum, KTErrorCodeEnum, MaaPErrorCodeEnum, RcsBizCenterErrorCodeEnum
 from rcs_pydantic.exceptions import MessageException
 from rcs_pydantic.main import RcsMessage
@@ -23,6 +24,22 @@ def test_rcs_message():
         footer="010-0000-0000",
         cdr_id="abc",
         copy_allowed=True,
+    )
+    rcs_message.send()
+
+
+def test_rcs_chat_message():
+    rcs_message = RcsMessage(
+        factory.MessageInfoFactory(),
+        body=factory.RcsCHATBodyFactory(),
+        buttons=[factory.ButtonInfoFactory()],
+        agency_id="abc",
+        expiry_option=2,
+        header="1",
+        footer="010-0000-0000",
+        cdr_id="abc",
+        copy_allowed=True,
+        service_type=enums.ServiceTypeEnum.CHAT,
     )
     rcs_message.send()
 

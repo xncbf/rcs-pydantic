@@ -147,3 +147,11 @@ def test_message_info_factory():
 
 def test_send_info_factory():
     factory.SendInfoFactory()
+
+
+def test_file_info_factory():
+    factory.FileInfoFactory()
+
+
+def test_file_regist_info_factory():
+    factory.FileRegistInfoFactory()

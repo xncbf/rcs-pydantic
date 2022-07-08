@@ -476,9 +476,10 @@ class TextMessageInfo(BaseModel):
 
 
 class FileMessage(BaseModel):
-    downloadField: str
-    mimeType: str
-    size: str
+    fileName: str
+    fileUrl: str
+    fileMIMEType: str
+    fileSize: int
 
 
 class FileMessageInfo(BaseModel):
@@ -523,9 +524,10 @@ class MessageInfo(BaseModel):
         ```
         {
             "fileMessage": {
-                "downloadFileId":"20211020120413sasgfasdgsdgs",
-                "mimeType": "image/png",
-                "size": "15,012"
+                "fileName": "3686492106936898.jpeg",
+                "fileUrl": "https://bd-media- hub.hermes.kt.com/data/chat/message/file/3686492106936898.jpeg",
+                "fileMIMEType": "image/jpeg",
+                "fileSize": 326130
             }
         }
         ```
@@ -565,3 +567,23 @@ class TokenInfo(BaseModel):
     rcsId: str
     rcsSecret: str
     grantType: str
+
+
+class FileRegistInfo(BaseModel):
+    fileId: Optional[str]
+    usageType: enums.FileUsageTypeEnum
+    usageService: enums.FileUsageServiceEnum
+    mimeType: str
+    file: bytes
+    description: str
+
+
+class FileInfo(BaseModel):
+    fileId: Optional[str]
+    usageType: enums.FileUsageTypeEnum
+    usageService: enums.FileUsageServiceEnum
+    mimeType: str
+    status: enums.FileStatusEnum
+    size: Optional[int]
+    expiryDate: str = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}$")
+    url: str
