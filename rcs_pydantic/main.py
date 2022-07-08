@@ -30,6 +30,7 @@ class RcsMessage:
         cdr_id: Optional[str] = None,
         copy_allowed: Optional[bool] = None,
         buttons: Optional[list] = None,
+        chips: Optional[list] = None,
     ):
         self.message_info = message_info
         self.agency_id = agency_id
@@ -42,6 +43,7 @@ class RcsMessage:
         self.copy_allowed = copy_allowed
         self.body = body
         self.buttons = buttons
+        self.chips = chips
         self.send_info = scheme.SendInfo(
             common=scheme.CommonInfo(**self.make_common_info(message_info)),
             rcs=scheme.RcsInfo(**self.make_rcs_info(message_info)),
@@ -77,6 +79,8 @@ class RcsMessage:
             rcs_info.copyAllowed = self.copy_allowed
         if self.buttons:
             rcs_info.buttons = self.buttons
+        if self.chips:
+            rcs_info.chipLists = self.chips
         if message_info.replyId:
             rcs_info.replyId = message_info.replyId
         return rcs_info.dict(exclude_unset=True)
