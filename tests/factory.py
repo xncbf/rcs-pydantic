@@ -309,9 +309,9 @@ class FileRegistInfoFactory(factory.Factory):
     usageType: str = factory.LazyAttribute(lambda n: fake.random_element(elements=enums.FileUsageTypeEnum))
     usageService: str = factory.LazyAttribute(lambda n: fake.random_element(elements=enums.FileUsageServiceEnum))
     mimeType: str = fake.mime_type(category="image")
-    file: bytes = b"""\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x02\x00\x00\x00\x02\x08\x02\x00\x00\x00\xfd\xd4
-                 \x9as\x00\x00\x00\x16IDATx\x9cc\x9ccy\x97\x81\x81\x81i\xe5\x8d\x0b\x0c\x0c\x0c\x00\x1f\xaf\x04
-                 \x07\xa1\xbdi\xdd\x00\x00\x00\x00IEND\xaeB`\x82"""
+    file: bytes = b"""\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x02\x00\x00\x00\x02\x08\x02\x00\x00\x00\xfd\xd4 \
+\x9as\x00\x00\x00\x16IDATx\x9cc\x9ccy\x97\x81\x81\x81i\xe5\x8d\x0b\x0c\x0c\x0c\x00\x1f\xaf\x04 \
+\x07\xa1\xbdi\xdd\x00\x00\x00\x00IEND\xaeB`\x82"""
     description: str = factory.LazyAttribute(lambda n: fake.sentence(nb_words=10)[:20])
 
     class Meta:
