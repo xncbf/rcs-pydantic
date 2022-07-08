@@ -482,7 +482,7 @@ class FileMessage(BaseModel):
 
 
 class FileMessageInfo(BaseModel):
-    fileMessage: str
+    fileMessage: FileMessage
 
 
 class GeolocationPushMessage(BaseModel):
