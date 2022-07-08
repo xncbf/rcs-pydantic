@@ -101,3 +101,17 @@ class MessageEnum(Enum):
     CAROUSEL_SMALL_4: str = "CMwShS0400"  # 슬라이드형(Small, 4장)
     CAROUSEL_SMALL_5: str = "CMwShS0500"  # 슬라이드형(Small, 5장)
     CAROUSEL_SMALL_6: str = "CMwShS0600"  # 슬라이드형(Small, 6장)
+
+
+class FileUsageTypeEnum(Enum):
+    SEND: str = "send"
+
+
+class FileUsageServiceEnum(Enum):
+    RCS: str = "RCS"
+    MMS: str = "MMS"
+
+
+class FileStatusEnum(Enum):
+    READY: str = "ready"
+    EXPIRED: str = "expired"

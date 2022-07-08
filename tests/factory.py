@@ -303,3 +303,13 @@ class SendInfoFactory(factory.Factory):
 
     common: scheme.CommonInfo = factory.SubFactory(CommonInfoFactory)
     rcs: scheme.RcsInfo = factory.SubFactory(RcsInfoFactory)
+
+
+class FileInfoFactory(factory.Factory):
+    class Meta:
+        model = scheme.FileInfo
+
+
+class FileRegistInfoFactory(factory.Factory):
+    class Meta:
+        model = scheme.FileRegistInfo
