@@ -305,11 +305,33 @@ class SendInfoFactory(factory.Factory):
     rcs: scheme.RcsInfo = factory.SubFactory(RcsInfoFactory)
 
 
-class FileInfoFactory(factory.Factory):
-    class Meta:
-        model = scheme.FileInfo
-
-
 class FileRegistInfoFactory(factory.Factory):
+    usageType: str = factory.LazyAttribute(lambda n: fake.random_element(elements=enums.FileUsageTypeEnum))
+    usageService: str = factory.LazyAttribute(lambda n: fake.random_element(elements=enums.FileUsageServiceEnum))
+    mimeType: str = fake.mime_type(category="image")
+    file: bytes = b"""\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x02\x00\x00\x00\x02\x08\x02\x00\x00\x00\xfd\xd4
+                 \x9as\x00\x00\x00\x16IDATx\x9cc\x9ccy\x97\x81\x81\x81i\xe5\x8d\x0b\x0c\x0c\x0c\x00\x1f\xaf\x04
+                 \x07\xa1\xbdi\xdd\x00\x00\x00\x00IEND\xaeB`\x82"""
+    description: str = factory.LazyAttribute(lambda n: fake.sentence(nb_words=10)[:20])
+
     class Meta:
         model = scheme.FileRegistInfo
+
+
+class FileInfoFactory(factory.Factory):
+    usageType: str = factory.LazyAttribute(lambda n: fake.random_element(elements=enums.FileUsageTypeEnum))
+    usageService: str = factory.LazyAttribute(lambda n: fake.random_element(elements=enums.FileUsageServiceEnum))
+    mimeType: str = fake.mime_type(category="image")
+    status: str = factory.LazyAttribute(lambda n: fake.random_element(elements=enums.FileStatusEnum))
+
+    @factory.lazy_attribute
+    def expiryDate(self) -> str:
+        t = datetime.now()
+        s: str = t.strftime("%Y-%m-%dT%H:%M:%S.%f")
+        s = s[:-3]
+        return s + "+09"
+
+    url: str = factory.Faker("url")
+
+    class Meta:
+        model = scheme.FileInfo

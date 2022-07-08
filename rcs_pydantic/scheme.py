@@ -574,7 +574,7 @@ class FileRegistInfo(BaseModel):
     usageType: enums.FileUsageTypeEnum
     usageService: enums.FileUsageServiceEnum
     mimeType: str
-    file: enums.FileStatusEnum
+    file: bytes
     description: str
 
 

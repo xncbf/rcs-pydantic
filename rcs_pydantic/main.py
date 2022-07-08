@@ -47,7 +47,7 @@ class RcsMessage:
             rcs=scheme.RcsInfo(**self.make_rcs_info(message_info)),
         )
 
-    def make_common_info(self, message_info: scheme.MessageInfo) -> scheme.CommonInfo:
+    def make_common_info(self, message_info: scheme.MessageInfo) -> dict:
         return scheme.CommonInfo(
             msgId=str(uuid.uuid4()),
             userContact=message_info.userContact,
@@ -55,7 +55,7 @@ class RcsMessage:
             msgServiceType=enums.MessageServiceTypeEnum.RCS,
         ).dict(exclude_unset=True)
 
-    def make_rcs_info(self, message_info: scheme.MessageInfo) -> scheme.RcsInfo:
+    def make_rcs_info(self, message_info: scheme.MessageInfo) -> dict:
         rcs_info = scheme.RcsInfo(
             chatbotId=message_info.chatbotId,
             messagebaseId=self.message_base_id,
