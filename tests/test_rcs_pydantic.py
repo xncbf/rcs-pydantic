@@ -31,7 +31,7 @@ def test_rcs_message():
 def test_rcs_chat_message():
     rcs_message = RcsMessage(
         factory.MessageInfoFactory(),
-        body=factory.RcsSMSBodyFactory(),
+        body=factory.RcsCHATBodyFactory(),
         buttons=[factory.ButtonInfoFactory()],
         agency_id="abc",
         expiry_option=2,
