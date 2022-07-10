@@ -306,6 +306,7 @@ class SendInfoFactory(factory.Factory):
 
 
 class FileRegistInfoFactory(factory.Factory):
+    fileId: str = factory.Faker("uuid4")
     usageType: str = factory.LazyAttribute(lambda n: fake.random_element(elements=enums.FileUsageTypeEnum))
     usageService: str = factory.LazyAttribute(lambda n: fake.random_element(elements=enums.FileUsageServiceEnum))
     mimeType: str = fake.mime_type(category="image")

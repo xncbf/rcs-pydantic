@@ -577,12 +577,12 @@ class TokenInfo(BaseModel):
 
 
 class FileRegistInfo(BaseModel):
-    fileId: Optional[str]
+    fileId: str
     usageType: enums.FileUsageTypeEnum
     usageService: enums.FileUsageServiceEnum
     mimeType: str
     file: bytes
-    description: str
+    description: Optional[str]
 
 
 class FileInfo(BaseModel):
