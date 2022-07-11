@@ -237,6 +237,15 @@ class PostbackInfo(BaseModel):
     data: str = Field(max_length=2048)
 
 
+class ReplyActionInfo(BaseModel):
+    """
+    버튼을 눌러서 답장할수있습니다.
+    """
+
+    displayText: str = Field(max_length=200)
+    postback: PostbackInfo
+
+
 class ActionInfo(BaseModel):
     urlAction: Optional[UrlActionInfo]
     localBrowserAction: Optional[LocalBrowserActionInfo]
@@ -250,7 +259,8 @@ class ActionInfo(BaseModel):
 
 
 class SuggestionInfo(BaseModel):
-    action: ActionInfo
+    action: Optional[ActionInfo]
+    reply: Optional[ReplyActionInfo]
 
 
 class ButtonInfo(BaseModel):
