@@ -504,11 +504,11 @@ class FileMessageInfo(BaseModel):
 
 
 class GeolocationPushMessage(BaseModel):
-    label: str
-    timestamp: str
-    timeOffset: str
-    pos: str
-    radius: int
+    label: Optional[str]
+    timestamp: Optional[str]
+    timeOffset: Optional[str]
+    pos: Optional[str]
+    radius: Optional[int]
 
 
 class UserLocationInfo(BaseModel):
