@@ -389,9 +389,9 @@ class RcsInfo(BaseModel):
     버튼의 변수부를 등록 하여 사용하며, 해당 필드 허용하지 않음.
     """
 
-    chipLists: Optional[List]
+    chipList: Optional[List]
     """
-    # chipLists
+    # chipList
     GSMA RCC.07의3.6.10.4의 ‘suggestion’ 규격에 따라 chiplist를 구성(RCC.07의 기준 버전 확인 필요)
     ㅇRCSCHAT인 경우에만 사용.
     * Chiplist는 최대 11개까지 사용 가능하다

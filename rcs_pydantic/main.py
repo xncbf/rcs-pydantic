@@ -80,7 +80,7 @@ class RcsMessage:
         if self.buttons:
             rcs_info.buttons = self.buttons
         if self.chips:
-            rcs_info.chipLists = self.chips
+            rcs_info.chipList = self.chips
         if message_info.replyId:
             rcs_info.replyId = message_info.replyId
         return rcs_info.dict(exclude_unset=True)
