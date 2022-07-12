@@ -3,7 +3,7 @@ from typing import Dict, List, Optional, Union
 from pydantic import BaseModel, Field, validator
 
 from . import enums
-from .errors import ErrorCodeEnum, LegacyErrorCodeEnum
+from .errors import LegacyErrorCodeEnum
 
 
 class EmptyDict:
@@ -447,6 +447,16 @@ class LegacyInfo(BaseModel):
     """
 
 
+class ErrorInfo(BaseModel):
+    code: str
+    message: str
+
+
+class ResponseErrorInfo(BaseModel):
+    status: str
+    error: ErrorInfo
+
+
 class StatusInfo(BaseModel):
     """
     메시지 전송 결과
@@ -459,7 +469,7 @@ class StatusInfo(BaseModel):
     serviceType: Optional[enums.ServiceTypeEnum]
     mnoInfo: Optional[enums.MnoInfoEnum]
     sentTime: Optional[str] = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}$")
-    error: Optional[ErrorCodeEnum]
+    error: Optional[ErrorInfo]
     legacyError: Optional[LegacyErrorCodeEnum]
     timestamp: str = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}$")
     autoReplyMsgId: Optional[str] = Field(max_length=40)
@@ -471,16 +481,6 @@ class StatusInfo(BaseModel):
 class QuerystatusInfo(BaseModel):
     queryId: Optional[str] = Field(max_length=40)
     moreToSend: Optional[int] = Field(ge=0, le=1)
-
-
-class ErrorInfo(BaseModel):
-    code: str
-    message: str
-
-
-class ResponseErrorInfo(BaseModel):
-    status: str
-    error: ErrorInfo
 
 
 class ResponseInfo(BaseModel):
