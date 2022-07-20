@@ -41,11 +41,6 @@ class RcsCHATBodyFactory(factory.Factory):
     description: str = factory.Faker("name")
 
 
-class RcsTMPLBodyFactory(factory.Factory):
-    class Meta:
-        model = scheme.RcsTMPLBody
-
-
 class LocationInfoFactory(factory.Factory):
     class Meta:
         model = scheme.LocationInfo

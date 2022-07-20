@@ -10,7 +10,6 @@ __all__ = [
     "RcsLMSBody",
     "RcsMMSBody",
     "RcsCHATBody",
-    "RcsTMPLBody",
     "RcsSMSCarouselBody",
     "RcsLMSCarouselBody",
     "RcsMMSCarouselBody",
