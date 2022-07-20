@@ -24,10 +24,6 @@ def test_rcs_chat_body_factory():
     factory.RcsCHATBodyFactory()
 
 
-def test_rcs_tmpl_body_factory():
-    factory.RcsTMPLBodyFactory()
-
-
 def test_location_info_factory():
     factory.LocationInfoFactory()
 

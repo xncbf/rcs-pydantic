@@ -128,11 +128,6 @@ class RcsCHATCarouselBody(BaseModel):
     media6: Optional[str]
 
 
-class RcsTMPLBody(BaseModel):
-    # TODO
-    pass
-
-
 class LocationInfo(BaseModel):
     query: Optional[str]
     longitude: Optional[float]
@@ -347,11 +342,11 @@ class RcsInfo(BaseModel):
         RcsLMSBody,
         RcsMMSBody,
         RcsCHATBody,
-        # RcsTMPLBody,
         RcsSMSCarouselBody,
         RcsLMSCarouselBody,
         RcsMMSCarouselBody,
         RcsCHATCarouselBody,
+        dict,
     ]
     """
     # body
@@ -389,7 +384,7 @@ class RcsInfo(BaseModel):
     버튼의 변수부를 등록 하여 사용하며, 해당 필드 허용하지 않음.
     """
 
-    chipList: Optional[List]
+    chipList: Optional[List[SuggestionInfo]]
     """
     # chipList
     GSMA RCC.07의3.6.10.4의 ‘suggestion’ 규격에 따라 chiplist를 구성(RCC.07의 기준 버전 확인 필요)
@@ -405,6 +400,9 @@ class RcsInfo(BaseModel):
     ㅇRCSCHAT인 경우에 반드시 포함되어야 하며, RCSCHAT이 아닌 경우에는 포함되면 발송이 실패된다
     *양방향서비스에서 양방향 대화의 세션을 관리하는 기준으로, 고객이 양방향 MO를 수행할 때마다 새롭게 할당되며, 유효시간은 24시간임. 유효시간이 만료된 replyId포함되어 발송되면 실패처리된다
     """
+
+    class Config:
+        smart_union = True
 
 
 class LegacyInfo(BaseModel):

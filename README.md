@@ -106,7 +106,6 @@ RcsSMSBody
 RcsLMSBody
 RcsMMSBody
 RcsCHATBody
-RcsTMPLBody
 RcsSMSCarouselBody
 RcsLMSCarouselBody
 RcsMMSCarouselBody

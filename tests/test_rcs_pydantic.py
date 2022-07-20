@@ -40,6 +40,7 @@ def test_rcs_chat_message():
         cdr_id="abc",
         copy_allowed=True,
         service_type=enums.ServiceTypeEnum.CHAT,
+        chips=[factory.SuggestionInfoFactory()],
     )
     rcs_message.send()
 
