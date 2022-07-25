@@ -67,64 +67,64 @@ class RcsSMSCarouselBody(BaseModel):
 
 class RcsLMSCarouselBody(BaseModel):
     title1: Optional[str] = Field(max_length=30)
-    description1: str = Field(max_length=100)
+    description1: str = Field(max_length=1300)
     media1: Optional[str]
     title2: Optional[str] = Field(max_length=30)
-    description2: Optional[str] = Field(max_length=100)
+    description2: Optional[str] = Field(max_length=1300)
     media2: Optional[str]
     title3: Optional[str] = Field(max_length=30)
-    description3: Optional[str] = Field(max_length=100)
+    description3: Optional[str] = Field(max_length=1300)
     media3: Optional[str]
     title4: Optional[str] = Field(max_length=30)
-    description4: Optional[str] = Field(max_length=100)
+    description4: Optional[str] = Field(max_length=1300)
     media4: Optional[str]
     title5: Optional[str] = Field(max_length=30)
-    description5: Optional[str] = Field(max_length=100)
+    description5: Optional[str] = Field(max_length=1300)
     media5: Optional[str]
     title6: Optional[str] = Field(max_length=30)
-    description6: Optional[str] = Field(max_length=100)
+    description6: Optional[str] = Field(max_length=1300)
     media6: Optional[str]
 
 
 class RcsMMSCarouselBody(BaseModel):
     title1: Optional[str] = Field(max_length=30)
-    description1: str = Field(max_length=100)
+    description1: str = Field(max_length=1300)
     media1: Optional[str]
     title2: Optional[str] = Field(max_length=30)
-    description2: Optional[str] = Field(max_length=100)
+    description2: Optional[str] = Field(max_length=1300)
     media2: Optional[str]
     title3: Optional[str] = Field(max_length=30)
-    description3: Optional[str] = Field(max_length=100)
+    description3: Optional[str] = Field(max_length=1300)
     media3: Optional[str]
     title4: Optional[str] = Field(max_length=30)
-    description4: Optional[str] = Field(max_length=100)
+    description4: Optional[str] = Field(max_length=1300)
     media4: Optional[str]
     title5: Optional[str] = Field(max_length=30)
-    description5: Optional[str] = Field(max_length=100)
+    description5: Optional[str] = Field(max_length=1300)
     media5: Optional[str]
     title6: Optional[str] = Field(max_length=30)
-    description6: Optional[str] = Field(max_length=100)
+    description6: Optional[str] = Field(max_length=1300)
     media6: Optional[str]
 
 
 class RcsCHATCarouselBody(BaseModel):
     title1: Optional[str] = Field(max_length=30)
-    description1: str = Field(max_length=100)
+    description1: str = Field(max_length=1300)
     media1: Optional[str]
     title2: Optional[str] = Field(max_length=30)
-    description2: Optional[str] = Field(max_length=100)
+    description2: Optional[str] = Field(max_length=1300)
     media2: Optional[str]
     title3: Optional[str] = Field(max_length=30)
-    description3: Optional[str] = Field(max_length=100)
+    description3: Optional[str] = Field(max_length=1300)
     media3: Optional[str]
     title4: Optional[str] = Field(max_length=30)
-    description4: Optional[str] = Field(max_length=100)
+    description4: Optional[str] = Field(max_length=1300)
     media4: Optional[str]
     title5: Optional[str] = Field(max_length=30)
-    description5: Optional[str] = Field(max_length=100)
+    description5: Optional[str] = Field(max_length=1300)
     media5: Optional[str]
     title6: Optional[str] = Field(max_length=30)
-    description6: Optional[str] = Field(max_length=100)
+    description6: Optional[str] = Field(max_length=1300)
     media6: Optional[str]
 
 
@@ -576,6 +576,7 @@ class MessageInfo(BaseModel):
 class SendInfo(BaseModel):
     common: CommonInfo
     rcs: RcsInfo
+    legacy: Optional[LegacyInfo]
 
 
 class TokenInfo(BaseModel):
