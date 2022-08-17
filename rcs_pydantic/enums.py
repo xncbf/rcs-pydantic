@@ -17,6 +17,7 @@ class ServiceTypeEnum(Enum):
 class LegacyServiceTypeEnum(Enum):
     SMS: str = "SMS"
     LMS: str = "LMS"
+    MMS: str = "MMS"
 
 
 class ScheduleTypeEnum(IntEnum):
