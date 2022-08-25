@@ -125,6 +125,6 @@ def test_rcs_legacy_message():
         footer="010-0000-0000",
         cdr_id="abc",
         copy_allowed=True,
-        legacy=LegacyInfoFactory()
+        legacy=LegacyInfoFactory(),
     )
     rcs_message.send()
