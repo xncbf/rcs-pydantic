@@ -9,7 +9,6 @@ from rcs_pydantic.main import RcsMessage
 from rcs_pydantic.scheme import EmptyDict
 
 from . import factory
-from .factory import LegacyInfoFactory
 
 fake = Faker()
 
@@ -125,6 +124,6 @@ def test_rcs_legacy_message():
         footer="010-0000-0000",
         cdr_id="abc",
         copy_allowed=True,
-        legacy=LegacyInfoFactory(),
+        legacy=factory.LegacyInfoFactory(),
     )
     rcs_message.send()
