@@ -31,6 +31,7 @@ class RcsMessage:
         copy_allowed: Optional[bool] = None,
         buttons: Optional[list] = None,
         chips: Optional[list] = None,
+        legacy: Optional[scheme.LegacyInfo] = None,
     ):
         self.message_info = message_info
         self.agency_id = agency_id
@@ -44,10 +45,25 @@ class RcsMessage:
         self.body = body
         self.buttons = buttons
         self.chips = chips
-        self.send_info = scheme.SendInfo(
+        self.legacy = legacy
+        self.send_info = self.make_send_info(
             common=scheme.CommonInfo(**self.make_common_info(message_info)),
             rcs=scheme.RcsInfo(**self.make_rcs_info(message_info)),
         )
+
+    def make_send_info(self, common, rcs):
+        if self.legacy:
+            return scheme.SendInfo(
+                common=common,
+                rcs=rcs,
+                legacy=self.legacy,
+            )
+
+        else:
+            return scheme.SendInfo(
+                common=common,
+                rcs=rcs,
+            )
 
     def make_common_info(self, message_info: scheme.MessageInfo) -> dict:
         return scheme.CommonInfo(
