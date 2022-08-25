@@ -103,4 +103,3 @@ class RcsMessage:
 
     def send(self):
         self.send_info
-

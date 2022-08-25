@@ -128,4 +128,3 @@ def test_rcs_legacy_message():
         legacy=LegacyInfoFactory()
     )
     rcs_message.send()
-
