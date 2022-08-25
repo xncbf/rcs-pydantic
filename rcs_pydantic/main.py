@@ -8,29 +8,30 @@ from . import scheme
 
 class RcsMessage:
     def __init__(
-        self,
-        message_info: scheme.MessageInfo,
-        body: Union[
-            scheme.RcsSMSBody,
-            scheme.RcsLMSBody,
-            scheme.RcsMMSBody,
-            scheme.RcsCHATBody,
-            scheme.RcsSMSCarouselBody,
-            scheme.RcsLMSCarouselBody,
-            scheme.RcsMMSCarouselBody,
-            scheme.RcsCHATCarouselBody,
-            dict,
-        ],
-        agency_id: Optional[str] = None,
-        message_base_id: Union[enums.MessageEnum, enums.RCSMessageEnum] = enums.MessageEnum.SMS,
-        service_type: enums.ServiceTypeEnum = enums.ServiceTypeEnum.SMS,
-        expiry_option: Optional[enums.ExpiryOptionEnum] = None,
-        header: enums.HeaderEnum = enums.HeaderEnum.NOT_ADVERTISE,
-        footer: Optional[str] = None,
-        cdr_id: Optional[str] = None,
-        copy_allowed: Optional[bool] = None,
-        buttons: Optional[list] = None,
-        chips: Optional[list] = None,
+            self,
+            message_info: scheme.MessageInfo,
+            body: Union[
+                scheme.RcsSMSBody,
+                scheme.RcsLMSBody,
+                scheme.RcsMMSBody,
+                scheme.RcsCHATBody,
+                scheme.RcsSMSCarouselBody,
+                scheme.RcsLMSCarouselBody,
+                scheme.RcsMMSCarouselBody,
+                scheme.RcsCHATCarouselBody,
+                dict,
+            ],
+            agency_id: Optional[str] = None,
+            message_base_id: Union[enums.MessageEnum, enums.RCSMessageEnum] = enums.MessageEnum.SMS,
+            service_type: enums.ServiceTypeEnum = enums.ServiceTypeEnum.SMS,
+            expiry_option: Optional[enums.ExpiryOptionEnum] = None,
+            header: enums.HeaderEnum = enums.HeaderEnum.NOT_ADVERTISE,
+            footer: Optional[str] = None,
+            cdr_id: Optional[str] = None,
+            copy_allowed: Optional[bool] = None,
+            buttons: Optional[list] = None,
+            chips: Optional[list] = None,
+            legacy: Optional[scheme.LegacyInfo] = None,
     ):
         self.message_info = message_info
         self.agency_id = agency_id
@@ -44,10 +45,25 @@ class RcsMessage:
         self.body = body
         self.buttons = buttons
         self.chips = chips
-        self.send_info = scheme.SendInfo(
+        self.legacy = legacy
+        self.send_info = self.make_send_info(
             common=scheme.CommonInfo(**self.make_common_info(message_info)),
             rcs=scheme.RcsInfo(**self.make_rcs_info(message_info)),
         )
+
+    def make_send_info(self, common, rcs):
+        if self.legacy:
+            return scheme.SendInfo(
+                common=common,
+                rcs=rcs,
+                legacy=self.legacy,
+            )
+
+        else:
+            return scheme.SendInfo(
+                common=common,
+                rcs=rcs,
+            )
 
     def make_common_info(self, message_info: scheme.MessageInfo) -> dict:
         return scheme.CommonInfo(
@@ -87,3 +103,4 @@ class RcsMessage:
 
     def send(self):
         self.send_info
+
