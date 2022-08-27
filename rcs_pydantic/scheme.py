@@ -3,7 +3,6 @@ from typing import Dict, List, Optional, Union
 from pydantic import BaseModel, Field, validator
 
 from . import enums
-from .errors import LegacyErrorCodeEnum
 
 
 class EmptyDict:
@@ -450,6 +449,11 @@ class ErrorInfo(BaseModel):
     message: str
 
 
+class LegacyErrorInfo(BaseModel):
+    code: str
+    message: str
+
+
 class ResponseErrorInfo(BaseModel):
     status: str
     error: ErrorInfo
@@ -468,7 +472,7 @@ class StatusInfo(BaseModel):
     mnoInfo: Optional[enums.MnoInfoEnum]
     sentTime: Optional[str] = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}$")
     error: Optional[ErrorInfo]
-    legacyError: Optional[LegacyErrorCodeEnum]
+    legacyError: Optional[LegacyErrorInfo]
     timestamp: str = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}$")
     autoReplyMsgId: Optional[str] = Field(max_length=40)
     postbackId: Optional[str] = Field(max_length=40)
