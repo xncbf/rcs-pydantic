@@ -66,11 +66,16 @@ class RcsMessage:
             )
 
     def make_common_info(self, message_info: scheme.MessageInfo) -> dict:
+        if self.legacy:
+            msg_service_type = enums.MessageServiceTypeEnum.RCS_LEGACY
+        else:
+            msg_service_type = enums.MessageServiceTypeEnum.RCS
+
         return scheme.CommonInfo(
             msgId=str(uuid.uuid4()),
             userContact=message_info.userContact,
             scheduleType=0,
-            msgServiceType=enums.MessageServiceTypeEnum.RCS,
+            msgServiceType=msg_service_type,
         ).dict(exclude_unset=True)
 
     def make_rcs_info(self, message_info: scheme.MessageInfo) -> dict:
