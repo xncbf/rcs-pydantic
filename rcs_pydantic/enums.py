@@ -3,7 +3,7 @@ from enum import Enum, IntEnum
 
 class MessageServiceTypeEnum(Enum):
     RCS: str = "rcs"
-    LEGACY: str = "rcs, legacy"  # rcs 부달시, xMS로fallback전송
+    RCS_LEGACY: str = "rcs, legacy"  # rcs 부달시, xMS로fallback전송
 
 
 class ServiceTypeEnum(Enum):
