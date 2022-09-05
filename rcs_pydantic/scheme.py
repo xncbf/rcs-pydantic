@@ -468,7 +468,7 @@ class StatusInfo(BaseModel):
     msgId: str = Field(max_length=40)
     userContact: Optional[str] = Field(max_length=40)
     status: enums.MessageStatusEnum
-    serviceType: Optional[enums.ServiceTypeEnum]
+    serviceType: Union[enums.ServiceTypeEnum, enums.LegacyServiceTypeEnum, None]
     mnoInfo: Optional[enums.MnoInfoEnum]
     sentTime: Optional[str] = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}$")
     error: Optional[ErrorInfo]
