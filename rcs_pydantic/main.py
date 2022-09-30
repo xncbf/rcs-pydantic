@@ -32,6 +32,7 @@ class RcsMessage:
         buttons: Optional[list] = None,
         chips: Optional[list] = None,
         legacy: Optional[scheme.LegacyInfo] = None,
+        message_group_id: Optional[str] = None,
     ):
         self.message_info = message_info
         self.agency_id = agency_id
@@ -46,6 +47,7 @@ class RcsMessage:
         self.buttons = buttons
         self.chips = chips
         self.legacy = legacy
+        self.message_group_id = message_group_id
         self.send_info = self.make_send_info(
             common=scheme.CommonInfo(**self.make_common_info(message_info)),
             rcs=scheme.RcsInfo(**self.make_rcs_info(message_info)),
@@ -71,12 +73,17 @@ class RcsMessage:
         else:
             msg_service_type = enums.MessageServiceTypeEnum.RCS
 
-        return scheme.CommonInfo(
-            msgId=str(uuid.uuid4()),
-            userContact=message_info.userContact,
-            scheduleType=0,
-            msgServiceType=msg_service_type,
-        ).dict(exclude_unset=True)
+        common = {
+            "msgId": str(uuid.uuid4()),
+            "userContact": message_info.userContact,
+            "scheduleType": 0,
+            "msgServiceType": msg_service_type,
+        }
+
+        if self.message_group_id:
+            common["msgGroupId"] = self.message_group_id
+
+        return scheme.CommonInfo(**common).dict(exclude_unset=True)
 
     def make_rcs_info(self, message_info: scheme.MessageInfo) -> dict:
         rcs_info = scheme.RcsInfo(
