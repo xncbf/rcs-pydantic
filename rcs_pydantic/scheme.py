@@ -5,7 +5,7 @@ from pydantic import BaseModel, Field, validator
 from . import enums
 
 
-class EmptyDict:
+class EmptyDict(BaseModel):
     @classmethod
     def __get_validators__(cls):
         yield cls.validate
@@ -16,7 +16,7 @@ class EmptyDict:
             raise TypeError("dict required")
         if len(v.keys()) > 0:
             raise ValueError("dict must be empty")
-        return {}
+        return dict
 
 
 class RcsSMSBody(BaseModel):

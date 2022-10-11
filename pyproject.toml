@@ -22,6 +22,8 @@ mypy = "^0.931"
 isort = "^5.10.1"
 Faker = "^11.3.0"
 factory-boy = "^3.2.1"
+fastapi = "^0.85.0"
+uvicorn = "^0.18.3"
 
 [tool.black]
 line-length = 120
