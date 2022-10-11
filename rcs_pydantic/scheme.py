@@ -16,7 +16,7 @@ class EmptyDict(BaseModel):
             raise TypeError("dict required")
         if len(v.keys()) > 0:
             raise ValueError("dict must be empty")
-        return dict
+        return {}
 
 
 class RcsSMSBody(BaseModel):
