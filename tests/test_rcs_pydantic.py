@@ -24,6 +24,7 @@ def test_rcs_message():
         footer="010-0000-0000",
         cdr_id="abc",
         copy_allowed=True,
+        message_group_id="abc",
     )
     rcs_message.send()
 
