@@ -98,7 +98,7 @@ class MessageEnum(Enum):
     CAROUSEL_MEDIUM_4: str = "CMwMhM0400"  # 슬라이드형(Medium, 4장)
     CAROUSEL_MEDIUM_5: str = "CMwMhM0500"  # 슬라이드형(Medium, 5장)
     CAROUSEL_MEDIUM_6: str = "CMwMhM0600"  # 슬라이드형(Medium, 6장)
-    CAROUSEL_SMALL_2 : str = "CMwShS0200"  # 슬라이드형(Small, 2장)
+    CAROUSEL_SMALL_2: str = "CMwShS0200"  # 슬라이드형(Small, 2장)
     CAROUSEL_SMALL_3: str = "CMwShS0300"  # 슬라이드형(Small, 3장)
     CAROUSEL_SMALL_4: str = "CMwShS0400"  # 슬라이드형(Small, 4장)
     CAROUSEL_SMALL_5: str = "CMwShS0500"  # 슬라이드형(Small, 5장)
