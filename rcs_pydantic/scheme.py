@@ -482,6 +482,11 @@ class ResponseErrorInfo(BaseModel):
     error: ErrorInfo
 
 
+class ReasonInfo(BaseModel):
+    code: str
+    message: str
+
+
 class StatusInfo(BaseModel):
     """
     메시지 전송 결과
@@ -494,6 +499,7 @@ class StatusInfo(BaseModel):
     serviceType: Optional[enums.ServiceTypeEnum]
     mnoInfo: Optional[enums.MnoInfoEnum]
     sentTime: Optional[str] = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}$")
+    reason: Optional[ReasonInfo]
     error: Optional[ErrorInfo]
     legacyError: Optional[LegacyErrorCodeEnum]
     timestamp: str = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}$")
