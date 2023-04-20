@@ -11,6 +11,7 @@ class ServiceTypeEnum(Enum):
     LMS: str = "RCSLMS"
     MMS: str = "RCSMMS"
     TMPL: str = "RCSTMPL"
+    ITMPL: str = "RCSITMPL"
     CHAT: str = "RCSCHAT"
 
 
