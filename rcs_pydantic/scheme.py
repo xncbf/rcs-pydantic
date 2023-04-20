@@ -463,7 +463,7 @@ class LegacyInfo(BaseModel):
         - 79998(전송성공불확실함), 55820(Revoked Message)... 등
         - SMS 는 msg(본문), LMS/MMS 는 subject(제목)내 문구 삽입 예) 재전송, RE:
     """
-    kisaOrigCode: Optional[int] = Field(max_length=9)
+    kisaOrigCode: Optional[int] = Field(ge=0, le=999999999)
     """
     최초 발신 사업자코드, 9 자리 숫자 형식
     [보안성 강화] 대행사 고객의 경우 (즉, KT 중계가 최초 발신
