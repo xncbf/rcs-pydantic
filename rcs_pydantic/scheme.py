@@ -288,6 +288,20 @@ class RcsInfo(BaseModel):
     * Agency ID는 "Rcs Biz Center - 브랜드 운영관리" 에서 기업의 브랜드가 대행사 권한을 부여한 대행사의 ID
     Agency ID가 "ktbizrcs" 가 아닌 경우 필수 입력 필요.
     """
+    agencyKey: Optional[str]
+    """
+    # agencyKey
+    agencyId (대행사 ID) 와 매핑되는 대행사 Key 값
+    [보안성 강화] agencyId - agencyKey 가 불일치 하는 경우, 통신사에서 실패 처리. 대행사 고객인 경우 필수값. * agencyKey 는 RBC 에서 발급 및 갱신 가능하며,
+    갱신시 기존(old) agencyKey 는 최대 24 시간 유효함
+    """
+    brandKey: Optional[str]
+    """
+    # brandKey
+    chatbotId (챗봇 ID) 소유 brandId (브랜드 ID) 와 매핑되는 브랜드 Key 값
+    [보안성 강화] brandId - brandKey 가 불일치 하는 경우, 통신사에서 실패 처리. 대행사 고객인 경우 필수값. *brandKey 는 기존 RBC 에서 발급, 제공 중인 값
+    """
+
     messagebaseId: Union[enums.MessageEnum, enums.RCSMessageEnum, str]
     serviceType: enums.ServiceTypeEnum
     expiryOption: Optional[enums.ExpiryOptionEnum]
@@ -442,6 +456,19 @@ class LegacyInfo(BaseModel):
     - 여러 개인 경우, "|" 이용
     예) http://10.217.59.209:5084/data/MEDIA/RCS/send/2021/08/09/test004.jpg^1^JPG
     Maximum : 250Byte
+    """
+    prefix: Optional[str] = Field(max_length=10)
+    """
+    RCS 전송성공 가능성 있는 fallback 메시지 전송시 삽입문구
+        - 79998(전송성공불확실함), 55820(Revoked Message)... 등
+        - SMS 는 msg(본문), LMS/MMS 는 subject(제목)내 문구 삽입 예) 재전송, RE:
+    """
+    kisaOrigCode: Optional[int] = Field(max_length=9)
+    """
+    최초 발신 사업자코드, 9 자리 숫자 형식
+    [보안성 강화] 대행사 고객의 경우 (즉, KT 중계가 최초 발신
+    대행사가 아닌 경우) 최초 발신 사업자코드 전달 필수
+    예) 123456789
     """
 
 
