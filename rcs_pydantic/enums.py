@@ -49,6 +49,7 @@ class ActionEnum(Enum):
     CLIPBOARD_ACTION: str = "clipboardAction"  # 특정 문구를 사용자 단말이 자동으로 복사 할 수 있게 합니다
     COMPOSE_ACTION: str = "composeAction"  # 다른 번호로 메시지를 보낼 수 있도록 대화방을 엽니다.
     DIALER_ACTION: str = "dialerAction"  # 특정 전화번호로 전화를 걸 수 있습니다.
+    REPLY: str = "reply"  # postbackData 및 displayText 등의 값을 양방향 MO 메시지로 전송합니다.
 
 
 class MessageStatusEnum(Enum):
