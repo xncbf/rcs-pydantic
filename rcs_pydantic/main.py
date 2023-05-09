@@ -22,6 +22,8 @@ class RcsMessage:
             dict,
         ],
         agency_id: Optional[str] = None,
+        agency_key: Optional[str] = None,
+        brand_key: Optional[str] = None,
         message_base_id: Union[enums.MessageEnum, enums.RCSMessageEnum] = enums.MessageEnum.SMS,
         service_type: enums.ServiceTypeEnum = enums.ServiceTypeEnum.SMS,
         expiry_option: Optional[enums.ExpiryOptionEnum] = None,
@@ -36,6 +38,8 @@ class RcsMessage:
     ):
         self.message_info = message_info
         self.agency_id = agency_id
+        self.agency_key = agency_key
+        self.brand_key = brand_key
         self.message_base_id = message_base_id
         self.service_type = service_type
         self.expiry_option = expiry_option
@@ -95,6 +99,10 @@ class RcsMessage:
         )
         if self.agency_id:
             rcs_info.agencyId = self.agency_id
+        if self.agency_key:
+            rcs_info.agencyKey = self.agency_key
+        if self.brand_key:
+            rcs_info.brandKey = self.brand_key
         if self.expiry_option:
             rcs_info.expiryOption = self.expiry_option
         if self.service_type == enums.ServiceTypeEnum.CHAT:
