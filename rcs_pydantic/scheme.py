@@ -287,14 +287,14 @@ class RcsInfo(BaseModel):
     * Agency ID는 "Rcs Biz Center - 브랜드 운영관리" 에서 기업의 브랜드가 대행사 권한을 부여한 대행사의 ID
     Agency ID가 "ktbizrcs" 가 아닌 경우 필수 입력 필요.
     """
-    agencyKey: Optional[str]
+    agencyKey: str
     """
     # agencyKey
     agencyId (대행사 ID) 와 매핑되는 대행사 Key 값
     [보안성 강화] agencyId - agencyKey 가 불일치 하는 경우, 통신사에서 실패 처리. 대행사 고객인 경우 필수값. * agencyKey 는 RBC 에서 발급 및 갱신 가능하며,
     갱신시 기존(old) agencyKey 는 최대 24 시간 유효함
     """
-    brandKey: Optional[str]
+    brandKey: str
     """
     # brandKey
     chatbotId (챗봇 ID) 소유 brandId (브랜드 ID) 와 매핑되는 브랜드 Key 값

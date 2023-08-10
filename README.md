@@ -91,6 +91,8 @@ rcs=RcsInfo(
     header=<HeaderEnum.NOT_ADVERTISE: '0'>,
     copyAllowed=True,
     body=RcsSMSBody(title='타이틀', description='일반 RCSSMS 테스트 메시지 입니다.'),
+    agencyKey='<str: agency_key>'
+    brandKey='<str: brand_key>'
 )
 >>>
 ```
