@@ -21,9 +21,9 @@ class RcsMessage:
             scheme.RcsCHATCarouselBody,
             dict,
         ],
+        agency_key: str,
+        brand_key: str,
         agency_id: Optional[str] = None,
-        agency_key: Optional[str] = None,
-        brand_key: Optional[str] = None,
         message_base_id: Union[enums.MessageEnum, enums.RCSMessageEnum] = enums.MessageEnum.SMS,
         service_type: enums.ServiceTypeEnum = enums.ServiceTypeEnum.SMS,
         expiry_option: Optional[enums.ExpiryOptionEnum] = None,
@@ -96,13 +96,11 @@ class RcsMessage:
             serviceType=self.service_type,
             header=self.header,
             body=self.body,
+            agencyKey=self.agency_key,
+            brandKey=self.brand_key,
         )
         if self.agency_id:
             rcs_info.agencyId = self.agency_id
-        if self.agency_key:
-            rcs_info.agencyKey = self.agency_key
-        if self.brand_key:
-            rcs_info.brandKey = self.brand_key
         if self.expiry_option:
             rcs_info.expiryOption = self.expiry_option
         if self.service_type == enums.ServiceTypeEnum.CHAT:

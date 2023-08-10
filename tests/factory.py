@@ -196,6 +196,8 @@ class RcsInfoFactory(factory.Factory):
 
     chatbotId: str = factory.LazyAttribute(lambda n: fake.sentence(nb_words=10)[:40])
     agencyId: str = factory.LazyAttribute(lambda n: fake.sentence(nb_words=10)[:20])
+    agencyKey: str = factory.LazyAttribute(lambda n: fake.sentence(nb_words=10)[:20])
+    brandKey: str = factory.LazyAttribute(lambda n: fake.sentence(nb_words=10)[:20])
     messagebaseId: str = factory.LazyAttribute(lambda n: fake.random_element(elements=enums.MessageEnum))
     serviceType: str = factory.LazyAttribute(lambda n: fake.random_element(elements=enums.ServiceTypeEnum))
     expiryOption: int = 2
