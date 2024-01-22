@@ -58,7 +58,10 @@ class ErrorCodeEnum(TupleEnum):
     RCS_USER_NOT_FOUND = (41110, "Message Status Webhook ")
     PROCESS_REVOCATION_REQUEST_FAILED = (41117, "Message Status Webhook ")
     USER_FOR_MESSAGE_RECEIVING_NOT_FOUND = (41200, "")
-    MESSAGE_NOT_ACCEPTABLE = (41201, "Message Session형성과정 중 단말의 SDP에 message송신에 필요한 feature tag가 없는 경우 발생")
+    MESSAGE_NOT_ACCEPTABLE = (
+        41201,
+        "Message Session형성과정 중 단말의 SDP에 message송신에 필요한 feature tag가 없는 경우 발생",
+    )  # noqa: E501
     USER_IS_NOT_CAPABLE_FOR_TEXT = (41210, "Bot이 Text message를 보낼 때 user의 capability에 chat이 없는 경우 발생.")
     USER_IS_NOT_CAPABLE_FOR_FT = (41211, "Bot이 File message를 보낼 때 user의 capability에 fthttp가 없는 경우 발생")
     USER_IS_NOT_CAPABLE_FOR_RICHCARD = (
@@ -73,7 +76,7 @@ class ErrorCodeEnum(TupleEnum):
         41221,
         "clipboardAction, localBrowserAction, messageHeader, messageFooter, openrichcard, geolocationPushMessage,"
         "copyAllowed Bot이 v1.1에 해당하는 Extended message를 보낼 때 user의 capability에 bot, chatbot.sa, xbotmessage "
-        "1.1이 없는 경우 발생. 이 때 xbotmessage는 상위 version이 하위 version을 포함한다. (1.2 version이 있다면 1.1에 해당하는 "
+        "1.1이 없는 경우 발생. 이 때 xbotmessage는 상위 version이 하위 version을 포함한다. (1.2 version이 있다면 1.1에 해당하는 "  # noqa: E501
         "capability를 가진 것으로 간주함)",
     )
     USER_IS_NOT_CAPABLE_FOR_XBOTMESSAGE_1_2 = (
@@ -83,10 +86,16 @@ class ErrorCodeEnum(TupleEnum):
     )
     USER_IS_NOT_CAPABLE_FOR_OPENRICHARD_1_0 = (
         41230,
-        "Bot이 v1.0에 해당하는 Openrichcard를 보낼 때 user의 capability에 bot, chatbot.sa, xbotmessage 1.0이 없는 경우 발생",
+        "Bot이 v1.0에 해당하는 Openrichcard를 보낼 때 user의 capability에 bot, chatbot.sa, xbotmessage 1.0이 없는 경우 발생",  # noqa: E501
     )
-    USER_IS_NOT_CAPABLE_FOR_OPENRICHARD_1_1 = (41231, "v1.1에 해당하는 Openrichcard가 현재 정의 및 사용되지 않으므로, 실제 발생하지 않는 code")
-    USER_IS_NOT_CAPABLE_FOR_OPENRICHARD_1_2 = (41232, "v1.2에 해당하는 Openrichcard가 현재 정의 및 사용되지 않으므로, 실제 발생하지 않는 code")
+    USER_IS_NOT_CAPABLE_FOR_OPENRICHARD_1_1 = (
+        41231,
+        "v1.1에 해당하는 Openrichcard가 현재 정의 및 사용되지 않으므로, 실제 발생하지 않는 code",
+    )  # noqa: E501
+    USER_IS_NOT_CAPABLE_FOR_OPENRICHARD_1_2 = (
+        41232,
+        "v1.2에 해당하는 Openrichcard가 현재 정의 및 사용되지 않으므로, 실제 발생하지 않는 code",
+    )  # noqa: E501
     USER_IS_NOT_CAPABLE_FOR_GEOLOCATION_PUSH_REQUEST = (41240, "User is not capable for GEOLOCATION PUSH REQUEST")
     FAILED_TO_GET_MESSAGE_CONTENT_TYPE = (41250, "Failed to get message content type")
     FILE_DOWNLOAD_FAILED = (41300, "")
@@ -275,7 +284,7 @@ class MaaPErrorCodeEnum(TupleEnum):
     PERSISTENT_MENU_PERMISSION_ERROR = (52009, "Persistent Menu 등록이 허용되지 않습니다.")
     INVALID_PERSISTENT_MENU_DATA = (52010, "Persistent menu JSON 데이터 오류")
     MESSAGE_TRANSMISSION_TIME_EXCEEDING = (52016, "실시간 메시지 인입 후 10초안에 삼성으로 전달되지 못함")
-    MESSAGEBASE_ID_STOPPED_TEMPORARILY = (52023, "메시지 베이스의 상태가 'pause'인 메시지 베이스 메시지로 전문 구성하여 전송 시도 시")
+    MESSAGEBASE_ID_STOPPED_TEMPORARILY = (52023, "메시지 베이스의 상태가 'pause'인 메시지 베이스 메시지로 전문 구성하여 전송 시도 시")  # noqa: E501
     INVALID_WEBHOOK_REQUEST_PARAMETER = (52101, "잘못된 Webhook 중계사 요청 파라미터 입니다.")
     WEBHOOK_HOST_CONNECT_ERROR = (52102, "Webhook 중계 시스템 연결 오류")
     WEBHOOK_HOST_SERVER_REQUEST_FAILURE = (52103, "중계사 Webhook 전송 요청을 실패 했습니다.")
@@ -293,7 +302,7 @@ class MaaPErrorCodeEnum(TupleEnum):
     INVAILD_CONTACT_NUMBER_USER = (54001, "자사 고객이 아닙니다.")
     NO_RCS_CAPABILITY = (54002, "자사 고객이지만, RCS메시지를 수신할 수 있는 가입자가 아닙니다.")
     UNABLE_SENDING_TO_RECIPIENT = (54003, "단말기기로 RCS 메시지를 전송할 수 없습니다.")
-    MAA_P_INTERNAL_ERROR = (54004, "MaaP 시스템 혹은 RCS 프로토콜 상의 이슈로 발송 실패되었음 (삼성 에러 40001 ~ 41100, 42601)")
+    MAA_P_INTERNAL_ERROR = (54004, "MaaP 시스템 혹은 RCS 프로토콜 상의 이슈로 발송 실패되었음 (삼성 에러 40001 ~ 41100, 42601)")  # noqa: E501
     CORP_CONTENT_ERROR = (55001, "기업 정보 내용이 누락된 필수항목이 있습니다.")
     INVALID_PROPERTY = (55002, "필수 파라미터 검증 오류")
     AGENCY_CONTENT_ERROR = (55101, "대행사 정보 내용이 누락된 필수 항목이 있습니다.")
@@ -326,7 +335,10 @@ class MaaPErrorCodeEnum(TupleEnum):
     INVALID_MESSAGEBASEFORM_ID = (55602, "messagebaseformID가 존재하지 않습니다.")
     INVALID_MESSAGE_BASE_PRODUCT_CODE = (55603, "messaegBase의 상품코드 에러")
     PROHIBITED_TEXT_CONTENT = (55701, "(광고) 를 사용할 수 없음")
-    ACTION_BUTTON_PERMISSION_ERROR = (55702, "Action button이 허용되지 않는 messagebaseID에서 Action button을 사용하였음")
+    ACTION_BUTTON_PERMISSION_ERROR = (
+        55702,
+        "Action button이 허용되지 않는 messagebaseID에서 Action button을 사용하였음",
+    )  # noqa: E501
     PROHIBITED_HEADER_VALUE = (55703, "허용되지 않은 header 값 사용")
     PROHIBITED_FOOTER_FIELD = (55704, "header 값과 일치 하지 않은 footer 사용 (ex. header가 0 인데, footer 가 있음)")
     MISSING_FOOTER_CONTENT = (55705, "footer값이 누락되어 있습니다 (ex. header가 1 인데, footer 가 없음)")
@@ -421,10 +433,10 @@ class MaaPErrorCodeEnum(TupleEnum):
     AUTO_REPLY_MESSAGE_SENDING_ERROR = (51933, "자동 응답 메시지 발송 수행 오류가 발생했습니다.")
     NON_SERVICE_SUPPORTED_ERROR = (51934, "처리 미 대상 서비스 입니다.")
     SAMSUNG_MAA_P_CORE_FILE_SERVER_CONNECTION_ERROR = (51935, "삼성 MaaP Core 파일 서버 연결 오류가 발생했습니다.")
-    MESSAGE_FILE_MESSAGE_EVENT_FILE_DOWNLOAD_ERROR_1 = (51936, "파일 메시지 이벤트의 파일 메시지 다운로드 수행 오류가 발생했습니다.")
-    MESSAGE_FILE_MESSAGE_EVENT_FILE_DOWNLOAD_ERROR_2 = (51937, "파일 메시지 이벤트의 파일 메시지 다운로드 수행 오류가 발생했습니다.")
-    MESSAGE_FILE_MESSAGE_REGISTRATION_TO_DB_ERROR = (51938, "파일 메시지 이벤트의 파일 정보 DB 등록 오류가 발생했습니다.")
-    MESSAGE_FILE_MESSAGE_REGISTRATION_TO_DB_FAILURE = (51939, "파일 메시지 이벤트의 파일 정보 DB 등록 작업을 실패 했습니다.")
+    MESSAGE_FILE_MESSAGE_EVENT_FILE_DOWNLOAD_ERROR_1 = (51936, "파일 메시지 이벤트의 파일 메시지 다운로드 수행 오류가 발생했습니다.")  # noqa: E501
+    MESSAGE_FILE_MESSAGE_EVENT_FILE_DOWNLOAD_ERROR_2 = (51937, "파일 메시지 이벤트의 파일 메시지 다운로드 수행 오류가 발생했습니다.")  # noqa: E501
+    MESSAGE_FILE_MESSAGE_REGISTRATION_TO_DB_ERROR = (51938, "파일 메시지 이벤트의 파일 정보 DB 등록 오류가 발생했습니다.")  # noqa: E501
+    MESSAGE_FILE_MESSAGE_REGISTRATION_TO_DB_FAILURE = (51939, "파일 메시지 이벤트의 파일 정보 DB 등록 작업을 실패 했습니다.")  # noqa: E501
     WEBHOOK_SCHEDULER_ASYNC_EXECUTION_ERROR = (51950, "Webhook 스케줄러 비동기 수행 오류.")
     WEBHOOK_SCHEDULER_DB_EXECUTION_ERROR = (51951, "Webhook 스케줄러 DB 수행 오류.")
     WEBHOOK_SCHEDULER_DB_EXECUTION_FAILUER = (51952, "Webhook 스케줄러 DB 수행 실패.")
@@ -567,7 +579,7 @@ class KTErrorCodeEnum(TupleEnum):
     NOT_FOUND_RCS_SUBSCRIBER = (76003, "RCS 가입 정보 없음")
     XROSHOT_SENDER_INTERNAL_ERROR = (76004, "Xroshot Sender 내부 에러")
     XROSHOT_MANAGER_INTERNAL_ERROR = (76005, "Xroshot Manager 내부 에러")
-    EXPIRED_MESSAGE_RECEIVED_TIME = (77001, "Legacy : 레포트 수신 시간 만료 (메시지 전송 후, 24시간 레포트 못받는 경우) RCS  3일")
+    EXPIRED_MESSAGE_RECEIVED_TIME = (77001, "Legacy : 레포트 수신 시간 만료 (메시지 전송 후, 24시간 레포트 못받는 경우) RCS  3일")  # noqa: E501
     INVALIED_MESSAGE_SEQUENCE = (77002, "Message Sequence Number가 틀린 경우")
     NON_EXISTING_WEBHOOK_MESSAGE = (77003, "Webhook 발송 메시지가 존재하지 않습니다")
     INVALID_WEBHOOK_MESSAGE_1 = (77004, "잘못된 Webhook 발송 메시지입니다.")

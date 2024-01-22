@@ -77,17 +77,21 @@ class RcsMessage:
         else:
             msg_service_type = enums.MessageServiceTypeEnum.RCS
 
-        common = {
-            "msgId": str(uuid.uuid4()),
-            "userContact": message_info.userContact,
-            "scheduleType": 0,
-            "msgServiceType": msg_service_type,
-        }
-
         if self.message_group_id:
-            common["msgGroupId"] = self.message_group_id
-
-        return scheme.CommonInfo(**common).dict(exclude_unset=True)
+            return scheme.CommonInfo(
+                msgId=str(uuid.uuid4()),
+                userContact=str(message_info.userContact),
+                scheduleType=enums.ScheduleTypeEnum.IMMEDIATE,
+                msgServiceType=msg_service_type,
+                msgGroupId=self.message_group_id,
+            ).model_dump(exclude_none=True)
+        else:
+            return scheme.CommonInfo(
+                msgId=str(uuid.uuid4()),
+                userContact=str(message_info.userContact),
+                scheduleType=enums.ScheduleTypeEnum.IMMEDIATE,
+                msgServiceType=msg_service_type,
+            ).model_dump(exclude_none=True)
 
     def make_rcs_info(self, message_info: scheme.MessageInfo) -> dict:
         rcs_info = scheme.RcsInfo(
@@ -117,7 +121,4 @@ class RcsMessage:
             rcs_info.chipList = self.chips
         if message_info.replyId:
             rcs_info.replyId = message_info.replyId
-        return rcs_info.dict(exclude_unset=True)
-
-    def send(self):
-        self.send_info
+        return rcs_info.model_dump(exclude_none=True)

@@ -130,7 +130,7 @@ def test_token_info_factory():
 
 
 def test_response_info_factory():
-    factory.ResponseInfoFactory()
+    factory.ResponseInfoFactory(data=factory.TokenInfoFactory().model_dump())
 
 
 def test_message_info_factory():

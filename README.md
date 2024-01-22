@@ -43,7 +43,7 @@ pip install rcs-pydantic
 
 ## Dependency
 
-- python3.x (3.7 이상)
+- python3.x (3.8 이상)
 - pydantic
 
 ## Quick start

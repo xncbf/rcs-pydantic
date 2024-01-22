@@ -247,7 +247,7 @@ class ErrorInfoFactory(factory.Factory):
         model = scheme.ErrorInfo
 
     code: str = factory.LazyAttribute(
-        lambda n: fake.random_element(elements=[x.value[0] for x in errors.ErrorCodeEnum])
+        lambda n: str(fake.random_element(elements=[x.value[0] for x in errors.ErrorCodeEnum]))
     )
     message: str = factory.LazyAttribute(lambda n: fake.sentence(nb_words=20)[:50])
 
@@ -274,7 +274,6 @@ class ResponseInfoFactory(factory.Factory):
         model = scheme.ResponseInfo
 
     status: str = "200"
-    data: dict = factory.SubFactory(TokenInfoFactory)
 
 
 class MessageInfoFactory(factory.Factory):
