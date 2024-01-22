@@ -1,12 +1,10 @@
 import pytest
 from faker import Faker
-from pydantic import BaseModel
 
 from rcs_pydantic import enums
 from rcs_pydantic.errors import ErrorCodeEnum, KTErrorCodeEnum, MaaPErrorCodeEnum, RcsBizCenterErrorCodeEnum
 from rcs_pydantic.exceptions import MessageException
 from rcs_pydantic.main import RcsMessage
-from rcs_pydantic.scheme import EmptyDict
 
 from . import factory
 
@@ -21,14 +19,14 @@ def test_rcs_message():
         agency_id="abc",
         agency_key="abc",
         brand_key="abc",
-        expiry_option=2,
-        header="1",
+        expiry_option=enums.ExpiryOptionEnum.AFTER_SETTING_TIMES,
+        header=enums.HeaderEnum.ADVERTISE,
         footer="010-0000-0000",
         cdr_id="abc",
         copy_allowed=True,
         message_group_id="abc",
     )
-    rcs_message.send()
+    assert rcs_message.send_info
 
 
 def test_rcs_chat_message():
@@ -39,15 +37,15 @@ def test_rcs_chat_message():
         agency_id="abc",
         agency_key="abc",
         brand_key="abc",
-        expiry_option=2,
-        header="1",
+        expiry_option=enums.ExpiryOptionEnum.AFTER_SETTING_TIMES,
+        header=enums.HeaderEnum.ADVERTISE,
         footer="010-0000-0000",
         cdr_id="abc",
         copy_allowed=True,
         service_type=enums.ServiceTypeEnum.CHAT,
         chips=[factory.SuggestionInfoFactory()],
     )
-    rcs_message.send()
+    assert rcs_message.send_info
 
 
 def test_rcs_message_with_empty_button():
@@ -58,13 +56,13 @@ def test_rcs_message_with_empty_button():
         agency_id="abc",
         agency_key="abc",
         brand_key="abc",
-        expiry_option=2,
-        header="1",
+        expiry_option=enums.ExpiryOptionEnum.AFTER_SETTING_TIMES,
+        header=enums.HeaderEnum.ADVERTISE,
         footer="010-0000-0000",
         cdr_id="abc",
         copy_allowed=True,
     )
-    rcs_message.send()
+    assert rcs_message.send_info
 
 
 def test_tuple_enum_has_value():
@@ -104,22 +102,6 @@ def test_unknown_error_code_message_exception():
         raise MessageException(123)
 
 
-def test_empty_dict():
-    class C(BaseModel):
-        item: EmptyDict
-
-    C(item={})
-
-    with pytest.raises(ValueError):
-        C(item=None)
-
-    with pytest.raises(ValueError):
-        C(item=[])
-
-    with pytest.raises(ValueError):
-        C(item={"a": 1})
-
-
 def test_rcs_legacy_message():
     rcs_message = RcsMessage(
         factory.MessageInfoFactory(),
@@ -128,11 +110,11 @@ def test_rcs_legacy_message():
         agency_id="abc",
         agency_key="abc",
         brand_key="abc",
-        expiry_option=2,
-        header="1",
+        expiry_option=enums.ExpiryOptionEnum.AFTER_SETTING_TIMES,
+        header=enums.HeaderEnum.ADVERTISE,
         footer="010-0000-0000",
         cdr_id="abc",
         copy_allowed=True,
         legacy=factory.LegacyInfoFactory(),
     )
-    rcs_message.send()
+    assert rcs_message.send_info

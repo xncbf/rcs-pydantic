@@ -1,137 +1,124 @@
 from typing import Dict, List, Optional, Union
 
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, ConfigDict, Field, validator
+from typing_extensions import Never
 
 from . import enums
 
 
-class EmptyDict(BaseModel):
-    @classmethod
-    def __get_validators__(cls):
-        yield cls.validate
-
-    @classmethod
-    def validate(cls, v):
-        if not isinstance(v, dict):
-            raise TypeError("dict required")
-        if len(v.keys()) > 0:
-            raise ValueError("dict must be empty")
-        return {}
-
-
 class RcsSMSBody(BaseModel):
-    title: Optional[str] = Field(max_length=30)
+    title: Optional[str] = Field(max_length=30, default=None)
     description: str = Field(max_length=100)
-    media: Optional[str]
+    media: Optional[str] = None
 
 
 class RcsLMSBody(BaseModel):
-    title: Optional[str] = Field(max_length=30)
+    title: Optional[str] = Field(max_length=30, default=None)
     description: str = Field(max_length=1300)
-    media: Optional[str]
+    media: Optional[str] = None
 
 
 class RcsMMSBody(BaseModel):
-    title: Optional[str] = Field(max_length=30)
+    title: Optional[str] = Field(max_length=30, default=None)
     description: str = Field(max_length=1300)
-    media: Optional[str]
+    media: Optional[str] = None
 
 
 class RcsCHATBody(BaseModel):
-    title: Optional[str] = Field(max_length=30)
+    title: Optional[str] = Field(max_length=30, default=None)
     description: str = Field(max_length=1300)
-    media: Optional[str]
+    media: Optional[str] = None
 
 
 class RcsSMSCarouselBody(BaseModel):
-    title1: Optional[str] = Field(max_length=30)
+    title1: Optional[str] = Field(max_length=30, default=None)
     description1: str = Field(max_length=100)
-    media1: Optional[str]
-    title2: Optional[str] = Field(max_length=30)
-    description2: Optional[str] = Field(max_length=100)
-    media2: Optional[str]
+    media1: Optional[str] = None
+    title2: Optional[str] = Field(max_length=30, default=None)
+    description2: Optional[str] = Field(max_length=100, default=None)
+    media2: Optional[str] = None
     title3: Optional[str] = Field(max_length=30)
-    description3: Optional[str] = Field(max_length=100)
-    media3: Optional[str]
+    description3: Optional[str] = Field(max_length=100, default=None)
+    media3: Optional[str] = None
     title4: Optional[str] = Field(max_length=30)
     description4: Optional[str] = Field(max_length=100)
-    media4: Optional[str]
+    media4: Optional[str] = None
     title5: Optional[str] = Field(max_length=30)
     description5: Optional[str] = Field(max_length=100)
-    media5: Optional[str]
+    media5: Optional[str] = None
     title6: Optional[str] = Field(max_length=30)
     description6: Optional[str] = Field(max_length=100)
-    media6: Optional[str]
+    media6: Optional[str] = None
 
 
 class RcsLMSCarouselBody(BaseModel):
     title1: Optional[str] = Field(max_length=30)
     description1: str = Field(max_length=1300)
-    media1: Optional[str]
-    title2: Optional[str] = Field(max_length=30)
-    description2: Optional[str] = Field(max_length=1300)
-    media2: Optional[str]
-    title3: Optional[str] = Field(max_length=30)
-    description3: Optional[str] = Field(max_length=1300)
-    media3: Optional[str]
-    title4: Optional[str] = Field(max_length=30)
-    description4: Optional[str] = Field(max_length=1300)
-    media4: Optional[str]
-    title5: Optional[str] = Field(max_length=30)
-    description5: Optional[str] = Field(max_length=1300)
-    media5: Optional[str]
-    title6: Optional[str] = Field(max_length=30)
-    description6: Optional[str] = Field(max_length=1300)
-    media6: Optional[str]
+    media1: Optional[str] = None
+    title2: Optional[str] = Field(max_length=30, default=None)
+    description2: Optional[str] = Field(max_length=1300, default=None)
+    media2: Optional[str] = None
+    title3: Optional[str] = Field(max_length=30, default=None)
+    description3: Optional[str] = Field(max_length=1300, default=None)
+    media3: Optional[str] = None
+    title4: Optional[str] = Field(max_length=30, default=None)
+    description4: Optional[str] = Field(max_length=1300, default=None)
+    media4: Optional[str] = None
+    title5: Optional[str] = Field(max_length=30, default=None)
+    description5: Optional[str] = Field(max_length=1300, default=None)
+    media5: Optional[str] = None
+    title6: Optional[str] = Field(max_length=30, default=None)
+    description6: Optional[str] = Field(max_length=1300, default=None)
+    media6: Optional[str] = None
 
 
 class RcsMMSCarouselBody(BaseModel):
     title1: Optional[str] = Field(max_length=30)
     description1: str = Field(max_length=1300)
-    media1: Optional[str]
-    title2: Optional[str] = Field(max_length=30)
-    description2: Optional[str] = Field(max_length=1300)
-    media2: Optional[str]
-    title3: Optional[str] = Field(max_length=30)
-    description3: Optional[str] = Field(max_length=1300)
-    media3: Optional[str]
-    title4: Optional[str] = Field(max_length=30)
-    description4: Optional[str] = Field(max_length=1300)
-    media4: Optional[str]
-    title5: Optional[str] = Field(max_length=30)
-    description5: Optional[str] = Field(max_length=1300)
-    media5: Optional[str]
-    title6: Optional[str] = Field(max_length=30)
-    description6: Optional[str] = Field(max_length=1300)
-    media6: Optional[str]
+    media1: Optional[str] = None
+    title2: Optional[str] = Field(max_length=30, default=None)
+    description2: Optional[str] = Field(max_length=1300, default=None)
+    media2: Optional[str] = None
+    title3: Optional[str] = Field(max_length=30, default=None)
+    description3: Optional[str] = Field(max_length=1300, default=None)
+    media3: Optional[str] = None
+    title4: Optional[str] = Field(max_length=30, default=None)
+    description4: Optional[str] = Field(max_length=1300, default=None)
+    media4: Optional[str] = None
+    title5: Optional[str] = Field(max_length=30, default=None)
+    description5: Optional[str] = Field(max_length=1300, default=None)
+    media5: Optional[str] = None
+    title6: Optional[str] = Field(max_length=30, default=None)
+    description6: Optional[str] = Field(max_length=1300, default=None)
+    media6: Optional[str] = None
 
 
 class RcsCHATCarouselBody(BaseModel):
     title1: Optional[str] = Field(max_length=30)
     description1: str = Field(max_length=1300)
-    media1: Optional[str]
-    title2: Optional[str] = Field(max_length=30)
-    description2: Optional[str] = Field(max_length=1300)
-    media2: Optional[str]
-    title3: Optional[str] = Field(max_length=30)
-    description3: Optional[str] = Field(max_length=1300)
-    media3: Optional[str]
-    title4: Optional[str] = Field(max_length=30)
-    description4: Optional[str] = Field(max_length=1300)
-    media4: Optional[str]
-    title5: Optional[str] = Field(max_length=30)
-    description5: Optional[str] = Field(max_length=1300)
-    media5: Optional[str]
-    title6: Optional[str] = Field(max_length=30)
-    description6: Optional[str] = Field(max_length=1300)
-    media6: Optional[str]
+    media1: Optional[str] = None
+    title2: Optional[str] = Field(max_length=30, default=None)
+    description2: Optional[str] = Field(max_length=1300, default=None)
+    media2: Optional[str] = None
+    title3: Optional[str] = Field(max_length=30, default=None)
+    description3: Optional[str] = Field(max_length=1300, default=None)
+    media3: Optional[str] = None
+    title4: Optional[str] = Field(max_length=30, default=None)
+    description4: Optional[str] = Field(max_length=1300, default=None)
+    media4: Optional[str] = None
+    title5: Optional[str] = Field(max_length=30, default=None)
+    description5: Optional[str] = Field(max_length=1300, default=None)
+    media5: Optional[str] = None
+    title6: Optional[str] = Field(max_length=30, default=None)
+    description6: Optional[str] = Field(max_length=1300, default=None)
+    media6: Optional[str] = None
 
 
 class LocationInfo(BaseModel):
-    query: Optional[str]
-    longitude: Optional[float]
-    latitude: Optional[float]
-    label: Optional[str]
+    query: Optional[str] = None
+    longitude: Optional[float] = None
+    latitude: Optional[float] = None
+    label: Optional[str] = None
 
 
 class ShowLocationInfo(BaseModel):
@@ -147,7 +134,7 @@ class PostParameterInfo(BaseModel):
 class OpenUrlInfo(BaseModel):
     url: str
     isHalfView: Optional[str] = Field(default="false")
-    postParameter: Optional[PostParameterInfo]
+    postParameter: Optional[PostParameterInfo] = None
 
 
 class CreateCalendarEventInfo(BaseModel):
@@ -191,8 +178,8 @@ class MapActionInfo(BaseModel):
     미리 지정된 위치를 보여주거나 사용자의 현재 위치를 서버로 전송 할 수 있습니다.
     """
 
-    showLocation: Optional[ShowLocationInfo]
-    requestLocationPush: Optional[Dict]
+    showLocation: Optional[ShowLocationInfo] = None
+    requestLocationPush: Optional[Dict] = None
 
 
 class CalendarActionInfo(BaseModel):
@@ -241,20 +228,20 @@ class ReplyActionInfo(BaseModel):
 
 
 class ActionInfo(BaseModel):
-    urlAction: Optional[UrlActionInfo]
-    localBrowserAction: Optional[LocalBrowserActionInfo]
-    mapAction: Optional[MapActionInfo]
-    calendarAction: Optional[CalendarActionInfo]
-    clipboardAction: Optional[ClipboardActionInfo]
-    composeAction: Optional[ComposeActionInfo]
-    dialerAction: Optional[DialerActionInfo]
+    urlAction: Optional[UrlActionInfo] = None
+    localBrowserAction: Optional[LocalBrowserActionInfo] = None
+    mapAction: Optional[MapActionInfo] = None
+    calendarAction: Optional[CalendarActionInfo] = None
+    clipboardAction: Optional[ClipboardActionInfo] = None
+    composeAction: Optional[ComposeActionInfo] = None
+    dialerAction: Optional[DialerActionInfo] = None
     displayText: str = Field(max_length=200)
     postback: PostbackInfo
 
 
 class SuggestionInfo(BaseModel):
-    action: Optional[ActionInfo]
-    reply: Optional[ReplyActionInfo]
+    action: Optional[ActionInfo] = None
+    reply: Optional[ReplyActionInfo] = None
 
 
 class ButtonInfo(BaseModel):
@@ -271,14 +258,16 @@ class CommonInfo(BaseModel):
 
     msgId: str = Field(max_length=40)
     userContact: str = Field(max_length=40)
-    scheduleType: Optional[enums.ScheduleTypeEnum]
-    msgGroupId: Optional[str] = Field(max_length=20)
+    scheduleType: Optional[enums.ScheduleTypeEnum] = None
+    msgGroupId: Optional[str] = Field(max_length=20, default=None)
     msgServiceType: enums.MessageServiceTypeEnum
 
 
 class RcsInfo(BaseModel):
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
     chatbotId: str = Field(max_length=40)
-    agencyId: Optional[str] = Field(max_length=20)
+    agencyId: Optional[str] = Field(max_length=20, default=None)
     """
     # agencyId
     대행사 ID
@@ -291,19 +280,21 @@ class RcsInfo(BaseModel):
     """
     # agencyKey
     agencyId (대행사 ID) 와 매핑되는 대행사 Key 값
-    [보안성 강화] agencyId - agencyKey 가 불일치 하는 경우, 통신사에서 실패 처리. 대행사 고객인 경우 필수값. * agencyKey 는 RBC 에서 발급 및 갱신 가능하며,
+    [보안성 강화] agencyId - agencyKey 가 불일치 하는 경우,
+    통신사에서 실패 처리. 대행사 고객인 경우 필수값. * agencyKey 는 RBC 에서 발급 및 갱신 가능하며,
     갱신시 기존(old) agencyKey 는 최대 24 시간 유효함
     """
     brandKey: str
     """
     # brandKey
     chatbotId (챗봇 ID) 소유 brandId (브랜드 ID) 와 매핑되는 브랜드 Key 값
-    [보안성 강화] brandId - brandKey 가 불일치 하는 경우, 통신사에서 실패 처리. 대행사 고객인 경우 필수값. *brandKey 는 기존 RBC 에서 발급, 제공 중인 값
+    [보안성 강화] brandId - brandKey 가 불일치 하는 경우, 통신사에서 실패 처리.
+    대행사 고객인 경우 필수값. *brandKey 는 기존 RBC 에서 발급, 제공 중인 값
     """
 
     messagebaseId: Union[enums.MessageEnum, enums.RCSMessageEnum, str]
     serviceType: enums.ServiceTypeEnum
-    expiryOption: Optional[enums.ExpiryOptionEnum]
+    expiryOption: Optional[enums.ExpiryOptionEnum] = None
     """
     # expiryOption
     메시지 처리 옵션 enum: [1, 2]
@@ -316,7 +307,7 @@ class RcsInfo(BaseModel):
     """
     header: enums.HeaderEnum
 
-    footer: Optional[str] = Field(max_length=20, regex=r"^[\d-]*$")
+    footer: Optional[str] = Field(max_length=20, pattern=r"^[\d-]*$", default=None)
     """
     # footer
     수신거부 전화번호 (숫자, - 만 가능, Max: 20 자리)
@@ -332,7 +323,7 @@ class RcsInfo(BaseModel):
             raise ValueError("If header is 1 then footer should be provided.")
         return v
 
-    cdrId: Optional[str]
+    cdrId: Optional[str] = None
     """
     # cdrId
     청약 ID 기록시 기록한 ID로 과금 처리 된다.
@@ -383,7 +374,7 @@ class RcsInfo(BaseModel):
       - "media" :"maapfile://{fileId}"
     """
 
-    buttons: Optional[List[Union[ButtonInfo, EmptyDict]]]
+    buttons: Optional[List[Union[ButtonInfo, Dict[Never, Never]]]] = None
     """
     # buttons
     GSMA RCC.07의3.6.10.4의 ‘suggestions’ 규격에 준하여 버튼을 구성
@@ -397,7 +388,7 @@ class RcsInfo(BaseModel):
     버튼의 변수부를 등록 하여 사용하며, 해당 필드 허용하지 않음.
     """
 
-    chipList: Optional[List[SuggestionInfo]]
+    chipList: Optional[List[SuggestionInfo]] = None
     """
     # chipList
     GSMA RCC.07의3.6.10.4의 ‘suggestion’ 규격에 따라 chiplist를 구성(RCC.07의 기준 버전 확인 필요)
@@ -405,17 +396,16 @@ class RcsInfo(BaseModel):
     * Chiplist는 최대 11개까지 사용 가능하다
     """
 
-    replyId: Optional[str] = Field(max_length=40)
+    replyId: Optional[str] = Field(max_length=40, default=None)
     """
     # replyId
     양기업의 양방향 momsg를 수신할 때 포함된 replyID를 그대로 넣어서 전송한다
     Maximum : 40Byte
     ㅇRCSCHAT인 경우에 반드시 포함되어야 하며, RCSCHAT이 아닌 경우에는 포함되면 발송이 실패된다
-    *양방향서비스에서 양방향 대화의 세션을 관리하는 기준으로, 고객이 양방향 MO를 수행할 때마다 새롭게 할당되며, 유효시간은 24시간임. 유효시간이 만료된 replyId포함되어 발송되면 실패처리된다
+    *양방향서비스에서 양방향 대화의 세션을 관리하는 기준으로,
+    고객이 양방향 MO를 수행할 때마다 새롭게 할당되며, 유효시간은 24시간임.
+    유효시간이 만료된 replyId포함되어 발송되면 실패처리된다
     """
-
-    class Config:
-        smart_union = True
 
 
 class LegacyInfo(BaseModel):
@@ -429,7 +419,7 @@ class LegacyInfo(BaseModel):
     Fallback은SMS/LMS에 대해서만 제공하고, MMS,CHAT에 대해서는 제공하지 않는다
     """
     callback: str = Field(max_length=20)
-    subject: Optional[str] = Field(max_length=50)
+    subject: Optional[str] = Field(max_length=50, default=None)
     msg: str = Field(max_length=4000)
     """
     SMS : 80Byte
@@ -442,7 +432,7 @@ class LegacyInfo(BaseModel):
     - 0: SMS/LMS인 경우, 미디어파일 없는 경우
     - 1~3 : (TBD) MMS인 경우
     """
-    contentData: Optional[str] = Field(max_length=250)
+    contentData: Optional[str] = Field(max_length=250, default=None)
     """
     (TBD) MMS 에서 사용하는 이미지파일의 정보
     - 컨텐츠위치^컨텐츠타입^컨텐츠서브타입
@@ -456,13 +446,13 @@ class LegacyInfo(BaseModel):
     예) http://10.217.59.209:5084/data/MEDIA/RCS/send/2021/08/09/test004.jpg^1^JPG
     Maximum : 250Byte
     """
-    prefix: Optional[str] = Field(max_length=10)
+    prefix: Optional[str] = Field(max_length=10, default=None)
     """
     RCS 전송성공 가능성 있는 fallback 메시지 전송시 삽입문구
         - 79998(전송성공불확실함), 55820(Revoked Message)... 등
         - SMS 는 msg(본문), LMS/MMS 는 subject(제목)내 문구 삽입 예) 재전송, RE:
     """
-    kisaOrigCode: Optional[int] = Field(ge=0, le=999999999)
+    kisaOrigCode: Optional[int] = Field(ge=0, le=999999999, default=None)
     """
     최초 발신 사업자코드, 9 자리 숫자 형식
     [보안성 강화] 대행사 고객의 경우 (즉, KT 중계가 최초 발신
@@ -496,21 +486,21 @@ class StatusInfo(BaseModel):
     메시지 전송 결과
     """
 
-    rcsId: Optional[str] = Field(max_length=20)
+    rcsId: Optional[str] = Field(max_length=20, default=None)
     msgId: str = Field(max_length=40)
-    userContact: Optional[str] = Field(max_length=40)
+    userContact: Optional[str] = Field(max_length=40, default=None)
     status: enums.MessageStatusEnum
-    serviceType: Union[enums.ServiceTypeEnum, enums.LegacyServiceTypeEnum, None]
-    mnoInfo: Optional[enums.MnoInfoEnum]
-    sentTime: Optional[str] = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}$")
-    reason: Optional[ReasonInfo]
-    error: Optional[ErrorInfo]
-    legacyError: Optional[LegacyErrorInfo]
-    timestamp: str = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}$")
-    autoReplyMsgId: Optional[str] = Field(max_length=40)
-    postbackId: Optional[str] = Field(max_length=40)
-    chatbotId: Optional[str] = Field(max_length=40)
-    bill: Optional[enums.BillEnum]
+    serviceType: Union[enums.ServiceTypeEnum, enums.LegacyServiceTypeEnum, None] = None
+    mnoInfo: Optional[enums.MnoInfoEnum] = None
+    sentTime: Optional[str] = Field(pattern=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}$", default=None)
+    reason: Optional[ReasonInfo] = None
+    error: Optional[ErrorInfo] = None
+    legacyError: Optional[LegacyErrorInfo] = None
+    timestamp: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}$")
+    autoReplyMsgId: Optional[str] = Field(max_length=40, default=None)
+    postbackId: Optional[str] = Field(max_length=40, default=None)
+    chatbotId: Optional[str] = Field(max_length=40, default=None)
+    bill: Optional[enums.BillEnum] = None
 
 
 class QuerystatusInfo(BaseModel):
@@ -564,10 +554,10 @@ class MessageInfo(BaseModel):
     고객이 단말 대화방을 최초 진입 시 설정됨
     Maximum : 10Byte
     """
-    postbackId: Optional[str] = Field(max_length=40)
-    postbackData: Optional[str] = Field(max_length=2048)
-    displayText: Optional[str] = Field(max_length=200)
-    messageBody: Union[TextMessageInfo, UserLocationInfo, FileMessageInfo, None]
+    postbackId: Optional[str] = Field(max_length=40, default=None)
+    postbackData: Optional[str] = Field(max_length=2048, default=None)
+    displayText: Optional[str] = Field(max_length=200, default=None)
+    messageBody: Union[TextMessageInfo, UserLocationInfo, FileMessageInfo, None] = None
     """
     eventType이message인 경우에만 설정
     - 텍스트 메시지의 경우 샘플
@@ -607,13 +597,13 @@ class MessageInfo(BaseModel):
 
     userContact: str = Field(max_length=40)
     chatbotId: str = Field(max_length=40)
-    timestamp: str = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}$")
+    timestamp: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}$")
 
 
 class SendInfo(BaseModel):
     common: CommonInfo
     rcs: RcsInfo
-    legacy: Optional[LegacyInfo]
+    legacy: Optional[LegacyInfo] = None
 
 
 class TokenInfo(BaseModel):
@@ -628,15 +618,15 @@ class FileRegistInfo(BaseModel):
     usageService: enums.FileUsageServiceEnum
     mimeType: str
     file: bytes
-    description: Optional[str]
+    description: Optional[str] = None
 
 
 class FileInfo(BaseModel):
-    fileId: Optional[str]
+    fileId: Optional[str] = None
     usageType: enums.FileUsageTypeEnum
     usageService: enums.FileUsageServiceEnum
     mimeType: str
     status: enums.FileStatusEnum
-    size: Optional[int]
-    expiryDate: str = Field(regex=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}$")
+    size: Optional[int] = None
+    expiryDate: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+\d{2}$")
     url: str
